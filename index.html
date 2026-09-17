@@ -200,7 +200,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
 .lab-item-sub{font-size:11px;color:var(--t2);margin-top:2px;}
 .lab-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
 .lab-quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 22px;}
-.lab-qa{border:1.5px solid var(--bd);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:var(--sur);}
+.lab-qa{border:1.5px solid var(--bd);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:var(--sur);width:100%;text-align:left;font-family:inherit;font-size:inherit;}
 .lab-qa:hover{border-color:var(--g200);}
 .lab-qa-ico{font-size:22px;}
 .lab-qa-n{font-size:12px;font-weight:700;}
@@ -478,10 +478,10 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
       <div style="padding:4px 22px 10px;"><div style="font-size:13px;font-weight:700;">Quick Actions</div></div>
       <div class="lab-quick-actions">
-        <div class="lab-qa"><div class="lab-qa-ico">🧪</div><div class="lab-qa-n">Register Sample</div><div class="lab-qa-s">Log a new incoming sample</div></div>
-        <div class="lab-qa"><div class="lab-qa-ico">📝</div><div class="lab-qa-n">Enter Results</div><div class="lab-qa-s">RDT or microscopy</div></div>
-        <div class="lab-qa"><div class="lab-qa-ico">📤</div><div class="lab-qa-n">Refer to Ref Lab</div><div class="lab-qa-s">Send for PCR confirmation</div></div>
-        <div class="lab-qa"><div class="lab-qa-ico">📦</div><div class="lab-qa-n">Reagent Stock</div><div class="lab-qa-s">Check inventory levels</div></div>
+        <button class="lab-qa" onclick="go('dist-sample')" type="button"><div class="lab-qa-ico">🧪</div><div class="lab-qa-n">Register Sample</div><div class="lab-qa-s">Log a new incoming sample</div></button>
+        <button class="lab-qa" onclick="go('dist-results')" type="button"><div class="lab-qa-ico">📝</div><div class="lab-qa-n">Enter Results</div><div class="lab-qa-s">RDT or microscopy</div></button>
+        <button class="lab-qa" onclick="go('dist-refer')" type="button"><div class="lab-qa-ico">📤</div><div class="lab-qa-n">Refer to Ref Lab</div><div class="lab-qa-s">Send for PCR confirmation</div></button>
+        <button class="lab-qa" onclick="go('dist-stock')" type="button"><div class="lab-qa-ico">📦</div><div class="lab-qa-n">Reagent Stock</div><div class="lab-qa-s">Check inventory levels</div></button>
       </div>
       <div style="padding:10px 22px 6px;"><div style="font-size:13px;font-weight:700;">Sample Queue</div></div>
       <div class="lab-item">
@@ -550,10 +550,10 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
       <div style="padding:4px 22px 10px;"><div style="font-size:13px;font-weight:700;">Quick Actions</div></div>
       <div class="lab-quick-actions">
-        <div class="lab-qa"><div class="lab-qa-ico">🧬</div><div class="lab-qa-n">Log PCR Result</div><div class="lab-qa-s">Enter molecular result</div></div>
-        <div class="lab-qa"><div class="lab-qa-ico">✅</div><div class="lab-qa-n">Validate Results</div><div class="lab-qa-s">Confirm district findings</div></div>
-        <div class="lab-qa"><div class="lab-qa-ico">📊</div><div class="lab-qa-n">Export to DHIS2</div><div class="lab-qa-s">Upload national data</div></div>
-        <div class="lab-qa"><div class="lab-qa-ico">🛡️</div><div class="lab-qa-n">Quality Assurance</div><div class="lab-qa-s">Review QA reports</div></div>
+        <button class="lab-qa" onclick="go('ref-pcr')" type="button"><div class="lab-qa-ico">🧬</div><div class="lab-qa-n">Log PCR Result</div><div class="lab-qa-s">Enter molecular result</div></button>
+        <button class="lab-qa" onclick="go('ref-validate')" type="button"><div class="lab-qa-ico">✅</div><div class="lab-qa-n">Validate Results</div><div class="lab-qa-s">Confirm district findings</div></button>
+        <button class="lab-qa" onclick="go('ref-dhis2')" type="button"><div class="lab-qa-ico">📊</div><div class="lab-qa-n">Export to DHIS2</div><div class="lab-qa-s">Upload national data</div></button>
+        <button class="lab-qa" onclick="go('ref-qa')" type="button"><div class="lab-qa-ico">🛡️</div><div class="lab-qa-n">Quality Assurance</div><div class="lab-qa-s">Review QA reports</div></button>
       </div>
       <div style="padding:10px 22px 6px;"><div style="font-size:13px;font-weight:700;">Incoming — Awaiting PCR</div></div>
       <div class="lab-item">
@@ -594,6 +594,336 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
       <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: REGISTER SAMPLE ═══════════ -->
+  <div id="s-dist-sample" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Register Sample</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">District Lab · Log incoming sample</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="fld"><label class="flbl">Sample ID <span class="req">*</span></label><input class="finp" placeholder="Auto-generated e.g. NTD-KN-048" readonly style="background:var(--bg);"></div>
+        <div class="fld"><label class="flbl">Patient Name <span class="req">*</span></label><input class="finp" placeholder="Full name"></div>
+        <div class="fld"><label class="flbl">Age &amp; Sex <span class="req">*</span></label><div style="display:flex;gap:10px;"><input class="finp" placeholder="Age" style="width:90px;flex-shrink:0;"><select class="finp"><option>Male</option><option>Female</option></select></div></div>
+        <div class="fld"><label class="flbl">LGA / Ward <span class="req">*</span></label><input class="finp" placeholder="e.g. Gwale, Kano"></div>
+        <div class="fld"><label class="flbl">Suspected Disease <span class="req">*</span></label>
+          <select class="finp">
+            <option value="">Select disease</option>
+            <option>Lymphatic Filariasis (LF)</option>
+            <option>Schistosomiasis</option>
+            <option>Soil-transmitted Helminths (STH)</option>
+            <option>Trachoma</option>
+            <option>Onchocerciasis</option>
+            <option>Leprosy</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">Test Requested <span class="req">*</span></label>
+          <select class="finp">
+            <option value="">Select test type</option>
+            <option>RDT (Rapid Diagnostic Test)</option>
+            <option>Microscopy — Blood film</option>
+            <option>Microscopy — Stool</option>
+            <option>Urine filtration</option>
+            <option>Skin snip</option>
+            <option>PCR (refer to Ref Lab)</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">Referred by (CHW/PHC) <span class="req">*</span></label><input class="finp" placeholder="e.g. CHW-KN-2847"></div>
+        <div class="fld"><label class="flbl">Additional Notes</label><textarea class="finp" rows="3" placeholder="Any clinical observations…" style="resize:none;"></textarea></div>
+        <button class="btn btn-p" style="background:#1D4ED8;margin-top:6px;" onclick="go('dist')">Register Sample</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: ENTER RESULTS ═══════════ -->
+  <div id="s-dist-results" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Enter Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">RDT &amp; Microscopy findings</div></div>
+    </div>
+    <div class="scroll">
+      <div style="padding:12px 22px 4px;font-size:13px;font-weight:700;">Pending Results (16)</div>
+      <div class="lab-item" onclick="go('dist')">
+        <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-047 — LF (RDT)</div><div class="lab-item-sub">Female, 24 yrs · Gwale · Today</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist')">
+        <div class="lab-item-ico" style="background:#FEE2E2;">🩸</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-043 — LF (RDT)</div><div class="lab-item-sub">Male, 38 yrs · Kano Municipal · Yesterday</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-041 — STH (Stool Micro.)</div><div class="lab-item-sub">Male, 6 yrs · Nassarawa · Sep 15</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🫦</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-039 — Trachoma (Clinical)</div><div class="lab-item-sub">Female, 12 yrs · Ungogo · Sep 14</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+      </div>
+      <div style="padding:14px 22px 0;font-size:13px;font-weight:700;">Enter Result</div>
+      <div class="fbody" style="padding-top:12px;">
+        <div class="fld"><label class="flbl">Sample ID <span class="req">*</span></label><input class="finp" placeholder="e.g. NTD-KN-047"></div>
+        <div class="fld"><label class="flbl">Test Performed <span class="req">*</span></label>
+          <select class="finp"><option>RDT (Rapid Diagnostic Test)</option><option>Microscopy — Blood film</option><option>Microscopy — Stool</option><option>Urine filtration</option></select>
+        </div>
+        <div class="fld"><label class="flbl">Result <span class="req">*</span></label>
+          <div style="display:flex;gap:10px;">
+            <label style="flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;cursor:pointer;"><input type="radio" name="res" style="accent-color:#1D4ED8;"> <span style="font-size:13px;font-weight:600;color:#DC2626;">Positive</span></label>
+            <label style="flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;cursor:pointer;"><input type="radio" name="res" style="accent-color:#1D4ED8;"> <span style="font-size:13px;font-weight:600;color:#1A6B42;">Negative</span></label>
+          </div>
+        </div>
+        <div class="fld"><label class="flbl">Parasite Load / Intensity</label><input class="finp" placeholder="e.g. 120 mf/mL or Grade 2"></div>
+        <div class="fld"><label class="flbl">Tested by</label><input class="finp" placeholder="Staff name or ID" value="Dr. Adewale Bello"></div>
+        <button class="btn btn-p" style="background:#1D4ED8;margin-top:6px;" onclick="go('dist')">Save Result</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: REFER TO REF LAB ═══════════ -->
+  <div id="s-dist-refer" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Refer to Ref Lab</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Send sample for PCR confirmation</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div style="background:#EFF6FF;border-radius:12px;padding:14px;margin-bottom:18px;border:1px solid #BFDBFE;">
+          <div style="font-size:12px;font-weight:700;color:#1D4ED8;margin-bottom:4px;">ℹ️ PCR Referral</div>
+          <div style="font-size:11px;color:#1D4ED8;line-height:1.5;">Samples sent to the National NTD Reference Centre in Lagos for molecular confirmation. Typical turnaround: 3–5 working days.</div>
+        </div>
+        <div class="fld"><label class="flbl">Sample ID <span class="req">*</span></label><input class="finp" placeholder="e.g. NTD-KN-045"></div>
+        <div class="fld"><label class="flbl">Disease / Pathogen <span class="req">*</span></label>
+          <select class="finp">
+            <option value="">Select disease</option>
+            <option>Lymphatic Filariasis — W. bancrofti</option>
+            <option>Schistosomiasis — S. haematobium</option>
+            <option>Onchocerciasis — O. volvulus</option>
+            <option>Trachoma — C. trachomatis</option>
+            <option>Leprosy — M. leprae</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">Referral Reason <span class="req">*</span></label>
+          <select class="finp">
+            <option>RDT Positive — PCR confirmation needed</option>
+            <option>Inconclusive RDT result</option>
+            <option>Drug resistance suspected</option>
+            <option>Outbreak investigation</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">Sample Condition</label>
+          <select class="finp"><option>Good</option><option>Slightly haemolysed</option><option>Inadequate volume</option></select>
+        </div>
+        <div class="fld"><label class="flbl">Priority</label>
+          <div style="display:flex;gap:10px;">
+            <label style="flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;cursor:pointer;"><input type="radio" name="pri" style="accent-color:#1D4ED8;"> <span style="font-size:12px;font-weight:600;">Routine</span></label>
+            <label style="flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid #FCA5A5;background:#FFF5F5;border-radius:10px;padding:10px 14px;cursor:pointer;"><input type="radio" name="pri" style="accent-color:#DC2626;"> <span style="font-size:12px;font-weight:600;color:#DC2626;">Urgent</span></label>
+          </div>
+        </div>
+        <div class="fld"><label class="flbl">Accompanying Notes</label><textarea class="finp" rows="3" placeholder="Clinical context, previous treatments…" style="resize:none;"></textarea></div>
+        <button class="btn btn-p" style="background:#1D4ED8;margin-top:6px;" onclick="go('dist')">Send Referral</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: REAGENT STOCK ═══════════ -->
+  <div id="s-dist-stock" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Reagent Stock</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Inventory · Kano District Lab</div></div>
+    </div>
+    <div class="scroll">
+      <div style="padding:12px 22px 8px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:13px;font-weight:700;">Current Inventory</div>
+        <button class="btn" style="font-size:11px;padding:4px 12px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;border-radius:8px;" type="button">Request Restock</button>
+      </div>
+      <div style="padding:0 22px 16px;display:flex;flex-direction:column;gap:8px;">
+        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:9px;background:#DBEAFE;display:flex;align-items:center;justify-content:center;font-size:18px;">🩸</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">LF RDT Kit (Filariasis)</div><div style="font-size:11px;color:var(--t2);">Lot: LF-RDT-2024-08</div></div>
+          <div style="text-align:right;"><div style="font-size:15px;font-weight:800;color:#1A6B42;">48</div><div style="font-size:10px;color:var(--t2);">units</div></div>
+        </div>
+        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:9px;background:#D1FAE5;display:flex;align-items:center;justify-content:center;font-size:18px;">🔬</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Giemsa Stain (100mL)</div><div style="font-size:11px;color:var(--t2);">Lot: GIE-2024-11</div></div>
+          <div style="text-align:right;"><div style="font-size:15px;font-weight:800;color:#1A6B42;">12</div><div style="font-size:10px;color:var(--t2);">bottles</div></div>
+        </div>
+        <div style="background:var(--sur);border:1.5px solid #FCA5A5;border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:9px;background:#FEE2E2;display:flex;align-items:center;justify-content:center;font-size:18px;">⚠️</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;color:#DC2626;">Schisto Urine Filter</div><div style="font-size:11px;color:#DC2626;">Low stock — reorder needed</div></div>
+          <div style="text-align:right;"><div style="font-size:15px;font-weight:800;color:#DC2626;">3</div><div style="font-size:10px;color:#DC2626;">units</div></div>
+        </div>
+        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:9px;background:#EDE9FE;display:flex;align-items:center;justify-content:center;font-size:18px;">🧪</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">STH Kato-Katz Kit</div><div style="font-size:11px;color:var(--t2);">Lot: KK-2024-07</div></div>
+          <div style="text-align:right;"><div style="font-size:15px;font-weight:800;color:#1A6B42;">24</div><div style="font-size:10px;color:var(--t2);">kits</div></div>
+        </div>
+        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
+          <div style="width:38px;height:38px;border-radius:9px;background:#FFFBEB;display:flex;align-items:center;justify-content:center;font-size:18px;">🩹</div>
+          <div style="flex:1;"><div style="font-size:13px;font-weight:600;">Lancets (sterile, box)</div><div style="font-size:11px;color:var(--t2);">Universal lancets 1.8mm</div></div>
+          <div style="text-align:right;"><div style="font-size:15px;font-weight:800;color:#1A6B42;">200</div><div style="font-size:10px;color:var(--t2);">pieces</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: LOG PCR RESULT ═══════════ -->
+  <div id="s-ref-pcr" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Log PCR Result</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Enter molecular diagnostic result</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="fld"><label class="flbl">Reference Sample ID <span class="req">*</span></label>
+          <select class="finp">
+            <option value="">Select pending sample</option>
+            <option>REF-089 — LF (Wuchereria bancrofti) · Kano</option>
+            <option>REF-088 — Trachoma (C. trachomatis) · Lagos</option>
+            <option>REF-087 — Oncho. (O. volvulus) · Kaduna</option>
+            <option>REF-085 — Schisto. (S. haematobium) · Ogun</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">PCR Method <span class="req">*</span></label>
+          <select class="finp">
+            <option>Real-time PCR (qPCR)</option>
+            <option>Conventional PCR</option>
+            <option>LAMP (Loop-mediated isothermal)</option>
+            <option>ddPCR (Digital droplet)</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">Result <span class="req">*</span></label>
+          <div style="display:flex;gap:10px;">
+            <label style="flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;cursor:pointer;"><input type="radio" name="pcr-res" style="accent-color:#7C3AED;"> <span style="font-size:13px;font-weight:600;color:#DC2626;">Positive</span></label>
+            <label style="flex:1;display:flex;align-items:center;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:10px 14px;cursor:pointer;"><input type="radio" name="pcr-res" style="accent-color:#7C3AED;"> <span style="font-size:13px;font-weight:600;color:#1A6B42;">Negative</span></label>
+          </div>
+        </div>
+        <div class="fld"><label class="flbl">Ct Value (qPCR)</label><input class="finp" placeholder="e.g. 28.4 (leave blank if N/A)"></div>
+        <div class="fld"><label class="flbl">Parasite Species Confirmed</label><input class="finp" placeholder="e.g. Wuchereria bancrofti"></div>
+        <div class="fld"><label class="flbl">Run Date <span class="req">*</span></label><input class="finp" type="date" value="2026-09-17"></div>
+        <div class="fld"><label class="flbl">Scientist</label><input class="finp" value="Prof. Ngozi Eze"></div>
+        <div class="fld"><label class="flbl">Comments</label><textarea class="finp" rows="3" placeholder="Quality notes, inhibition, repeat runs…" style="resize:none;"></textarea></div>
+        <button class="btn btn-p" style="background:#7C3AED;margin-top:6px;" onclick="go('ref')">Submit PCR Result</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: VALIDATE RESULTS ═══════════ -->
+  <div id="s-ref-validate" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Validate Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Confirm district lab findings</div></div>
+    </div>
+    <div class="scroll">
+      <div style="padding:12px 22px 4px;display:flex;justify-content:space-between;align-items:center;">
+        <div style="font-size:13px;font-weight:700;">Awaiting Validation (6)</div>
+        <button class="btn" style="font-size:11px;padding:4px 12px;background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;border-radius:8px;" type="button">Validate All</button>
+      </div>
+      <div class="lab-item" onclick="go('ref')">
+        <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-047 — LF, Positive (RDT)</div><div class="lab-item-sub">Kano Dist. Lab · Dr. Adewale Bello · Today</div></div>
+        <div class="lab-item-right"><button style="background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;border-radius:8px;padding:4px 10px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;" type="button">Validate</button></div>
+      </div>
+      <div class="lab-item" onclick="go('ref')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-LG-031 — Schisto, Positive (Urine)</div><div class="lab-item-sub">Lagos Dist. Lab · Today</div></div>
+        <div class="lab-item-right"><button style="background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;border-radius:8px;padding:4px 10px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;" type="button">Validate</button></div>
+      </div>
+      <div class="lab-item" onclick="go('ref')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-086 — Schisto, PCR Confirmed</div><div class="lab-item-sub">Sokoto Dist. Lab · Sep 15</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Done</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref')">
+        <div class="lab-item-ico" style="background:#FEE2E2;">⚠️</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KD-019 — Oncho, Equivocal</div><div class="lab-item-sub">Kaduna Dist. Lab · Sep 14 · Needs repeat</div></div>
+        <div class="lab-item-right"><button style="background:#FEF2F2;color:#DC2626;border:1px solid #FECACA;border-radius:8px;padding:4px 10px;font-size:10px;font-weight:600;cursor:pointer;font-family:inherit;" type="button">Flag</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: EXPORT TO DHIS2 ═══════════ -->
+  <div id="s-ref-dhis2" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Export to DHIS2</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Upload validated data to national system</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div style="background:#F5F3FF;border-radius:12px;padding:14px;margin-bottom:18px;border:1px solid #DDD6FE;">
+          <div style="font-size:12px;font-weight:700;color:#7C3AED;margin-bottom:4px;">📊 Pending Upload</div>
+          <div style="font-size:11px;color:#7C3AED;line-height:1.5;">14 validated results are ready for DHIS2 upload. Select the period and confirm before exporting.</div>
+        </div>
+        <div class="fld"><label class="flbl">Reporting Period <span class="req">*</span></label>
+          <select class="finp">
+            <option>September 2026 (current)</option>
+            <option>August 2026</option>
+            <option>July 2026</option>
+          </select>
+        </div>
+        <div class="fld"><label class="flbl">Organisation Unit <span class="req">*</span></label><input class="finp" value="National NTD Reference Centre, Lagos" readonly style="background:var(--bg);"></div>
+        <div class="fld"><label class="flbl">Dataset</label>
+          <select class="finp">
+            <option>NTD Laboratory Surveillance</option>
+            <option>Preventive Chemotherapy</option>
+            <option>Morbidity Management</option>
+          </select>
+        </div>
+        <div style="background:var(--bg);border-radius:12px;padding:14px;margin-bottom:16px;">
+          <div style="font-size:12px;font-weight:700;margin-bottom:10px;">Export Summary</div>
+          <div style="display:flex;flex-direction:column;gap:6px;font-size:12px;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--t2);">Positive LF cases</span><span style="font-weight:600;">5</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--t2);">Schistosomiasis confirmed</span><span style="font-weight:600;">4</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--t2);">Trachoma confirmed</span><span style="font-weight:600;">3</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--t2);">Other NTDs</span><span style="font-weight:600;">2</span></div>
+            <div style="border-top:1px solid var(--bd);padding-top:6px;display:flex;justify-content:space-between;"><span style="font-weight:700;">Total records</span><span style="font-weight:700;color:#7C3AED;">14</span></div>
+          </div>
+        </div>
+        <button class="btn btn-p" style="background:#7C3AED;margin-top:6px;" onclick="go('ref')">Export to DHIS2</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: QUALITY ASSURANCE ═══════════ -->
+  <div id="s-ref-qa" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Quality Assurance</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">QA review &amp; performance metrics</div></div>
+    </div>
+    <div class="scroll">
+      <div style="padding:14px 22px 4px;font-size:13px;font-weight:700;">September 2026 QA Summary</div>
+      <div style="padding:8px 22px 16px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#1A6B42;">96%</div><div class="lab-stat-l">Overall pass rate</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#7C3AED;">211</div><div class="lab-stat-l">Tests validated</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#D97706;">9</div><div class="lab-stat-l">Discordant results</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#2563EB;">3</div><div class="lab-stat-l">Repeat runs</div></div>
+      </div>
+      <div style="padding:4px 22px 10px;font-size:13px;font-weight:700;">QA Checks</div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">Internal Controls — Passed</div><div class="lab-item-sub">Positive and negative controls within range</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Pass</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">External QA Panel (WHO) — Passed</div><div class="lab-item-sub">Aug 2026 panel · 20/20 correct</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Pass</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#FFFBEB;">⚠️</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">Equipment Calibration Due</div><div class="lab-item-sub">PCR thermocycler — due Sep 30</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Due soon</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">Staff Proficiency Test</div><div class="lab-item-sub">Q3 2026 · All staff passed</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Pass</span></div>
+      </div>
     </div>
   </div>
 
