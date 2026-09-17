@@ -484,7 +484,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <button class="lab-qa" style="background:#1D4ED8;border-color:#1D4ED8;" onclick="go('dist-stock')" type="button"><div class="lab-qa-ico">📦</div><div class="lab-qa-n" style="color:white;">Reagent Stock</div><div class="lab-qa-s" style="color:rgba(255,255,255,.7);">Check inventory levels</div></button>
       </div>
       <div style="padding:10px 22px 6px;"><div style="font-size:13px;font-weight:700;">Sample Queue</div></div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('dist-results')">
         <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">NTD-KN-047 — LF (RDT)</div>
@@ -492,7 +492,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="lab-item-right"><span class="badge-orange" style="display:inline-block;background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending</span></div>
       </div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('dist-results')">
         <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">NTD-KN-046 — STH (Microscopy)</div>
@@ -500,7 +500,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="lab-item-right"><span style="display:inline-block;background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Complete</span></div>
       </div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('dist-refer')">
         <div class="lab-item-ico" style="background:#FFE4E6;">🩸</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">NTD-KN-045 — Schistosomiasis (Urine)</div>
@@ -508,7 +508,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="lab-item-right"><span style="display:inline-block;background:#EFF6FF;color:#2563EB;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Referred</span></div>
       </div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('dist-results')">
         <div class="lab-item-ico" style="background:#EDE9FE;">🫦</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">NTD-KN-044 — Trachoma (Clinical)</div>
@@ -518,9 +518,9 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
     </div>
     <div class="bnav">
-      <button class="bnav-i on" style="color:#1D4ED8;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Results</button>
+      <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('dist-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('dist-results')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Results</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -556,7 +556,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <button class="lab-qa" style="background:#7C3AED;border-color:#7C3AED;" onclick="go('ref-qa')" type="button"><div class="lab-qa-ico">🛡️</div><div class="lab-qa-n" style="color:white;">Quality Assurance</div><div class="lab-qa-s" style="color:rgba(255,255,255,.7);">Review QA reports</div></button>
       </div>
       <div style="padding:10px 22px 6px;"><div style="font-size:13px;font-weight:700;">Incoming — Awaiting PCR</div></div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('ref-pcr')">
         <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">REF-089 — LF (PCR, Wuchereria)</div>
@@ -564,7 +564,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="lab-item-right"><span style="display:inline-block;background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
       </div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('ref-pcr')">
         <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">REF-088 — Trachoma (Molecular Ct)</div>
@@ -572,7 +572,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="lab-item-right"><span style="display:inline-block;background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
       </div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('ref-pcr')">
         <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">REF-087 — Oncho. (Skin snip PCR)</div>
@@ -580,7 +580,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="lab-item-right"><span style="display:inline-block;background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
       </div>
-      <div class="lab-item">
+      <div class="lab-item" onclick="go('ref-validate')">
         <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
         <div class="lab-item-body">
           <div class="lab-item-ttl">REF-086 — Schisto. (PCR confirmed)</div>
@@ -590,9 +590,9 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
     </div>
     <div class="bnav">
-      <button class="bnav-i on" style="color:#7C3AED;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('ref-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('ref-rlist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -740,7 +740,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     <div class="scroll">
       <div style="padding:12px 22px 8px;display:flex;justify-content:space-between;align-items:center;">
         <div style="font-size:13px;font-weight:700;">Current Inventory</div>
-        <button class="btn" style="font-size:11px;padding:4px 12px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;border-radius:8px;" type="button">Request Restock</button>
+        <button class="btn" style="font-size:11px;padding:4px 12px;background:#EFF6FF;color:#1D4ED8;border:1px solid #BFDBFE;border-radius:8px;" type="button" onclick="go('dist')">Request Restock</button>
       </div>
       <div style="padding:0 22px 16px;display:flex;flex-direction:column;gap:8px;">
         <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:12px;padding:14px;display:flex;align-items:center;gap:12px;">
@@ -822,7 +822,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     <div class="scroll">
       <div style="padding:12px 22px 4px;display:flex;justify-content:space-between;align-items:center;">
         <div style="font-size:13px;font-weight:700;">Awaiting Validation (6)</div>
-        <button class="btn" style="font-size:11px;padding:4px 12px;background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;border-radius:8px;" type="button">Validate All</button>
+        <button class="btn" style="font-size:11px;padding:4px 12px;background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;border-radius:8px;" type="button" onclick="go('ref')">Validate All</button>
       </div>
       <div class="lab-item" onclick="go('ref')">
         <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
@@ -953,7 +953,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           </div>
         </div>
         <div style="text-align:right;margin-top:-6px;margin-bottom:14px;">
-          <button style="background:none;border:none;color:var(--g700);font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Forgot password?</button>
+          <button style="background:none;border:none;color:var(--g700);font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;" onclick="go('signup')">Forgot password?</button>
         </div>
       </div>
     </div>
@@ -1672,11 +1672,11 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div class="drow"><span class="dkey">Stigma</span><span class="dval">Social exclusion, Verbal abuse</span></div>
       </div>
       <div class="d-actions">
-        <button class="d-action-btn">
+        <button class="d-action-btn" onclick="go('reports')">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
           Share
         </button>
-        <button class="d-action-btn">
+        <button class="d-action-btn" onclick="go('reports')">
           <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download
         </button>
@@ -1745,7 +1745,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
     </div>
     <div class="ffooter">
-      <button class="btn btn-p">
+      <button class="btn btn-p" onclick="go('home')">
         <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
         Submit Commodity Report
       </button>
@@ -1954,17 +1954,17 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     <div class="scroll">
       <div class="menu-section">
         <div class="menu-sec-ttl">Account</div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="go('more')">
           <div class="menu-ico" style="background:#EBF2FF;">👤</div>
           <div class="menu-label">My Profile</div>
           <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="go('notif')">
           <div class="menu-ico" style="background:#FFF0F0;">🔔</div>
           <div class="menu-label">Notifications</div>
           <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="go('login')">
           <div class="menu-ico" style="background:#F0FFF4;">🔒</div>
           <div class="menu-label">Change Password</div>
           <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
@@ -1972,12 +1972,12 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
       <div class="menu-section" style="margin-top:8px;">
         <div class="menu-sec-ttl">Support</div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="go('training')">
           <div class="menu-ico" style="background:#FFFBEB;">❓</div>
           <div class="menu-label">Help &amp; FAQ</div>
           <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
         </div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="go('notif')">
           <div class="menu-ico" style="background:#EDE9FE;">📞</div>
           <div class="menu-label">Contact Supervisor</div>
           <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
@@ -1985,7 +1985,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
       <div class="menu-section" style="margin-top:8px;">
         <div class="menu-sec-ttl">App</div>
-        <div class="menu-item">
+        <div class="menu-item" onclick="go('more')">
           <div class="menu-ico" style="background:#F0F9FF;">🌐</div>
           <div class="menu-label">Language</div>
           <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
@@ -2024,7 +2024,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       <button class="chip">Training</button>
     </div>
     <div class="scroll">
-      <div class="notif-item unread">
+      <div class="notif-item unread" onclick="go('report-detail')">
         <div class="notif-dot"></div>
         <div class="notif-ico2" style="background:#DBEAFE;">✅</div>
         <div class="notif-body">
@@ -2033,7 +2033,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div class="notif-time">Today, 11:30 AM</div>
         </div>
       </div>
-      <div class="notif-item unread">
+      <div class="notif-item unread" onclick="go('map')">
         <div class="notif-dot"></div>
         <div class="notif-ico2" style="background:#FEF3C7;">⚠️</div>
         <div class="notif-body">
@@ -2042,7 +2042,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div class="notif-time">Today, 8:02 AM</div>
         </div>
       </div>
-      <div class="notif-item">
+      <div class="notif-item" onclick="go('training')">
         <div class="notif-dot read"></div>
         <div class="notif-ico2" style="background:#D1FAE5;">📗</div>
         <div class="notif-body">
@@ -2051,7 +2051,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div class="notif-time">Yesterday, 3:15 PM</div>
         </div>
       </div>
-      <div class="notif-item">
+      <div class="notif-item" onclick="go('commodities')">
         <div class="notif-dot read"></div>
         <div class="notif-ico2" style="background:#EDE9FE;">📦</div>
         <div class="notif-body">
@@ -2060,7 +2060,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div class="notif-time">Sep 14, 10:45 AM</div>
         </div>
       </div>
-      <div class="notif-item">
+      <div class="notif-item" onclick="go('reports')">
         <div class="notif-dot read"></div>
         <div class="notif-ico2" style="background:#FFE4E6;">📋</div>
         <div class="notif-body">
@@ -2069,6 +2069,161 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div class="notif-time">Sep 14, 9:00 AM</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: ALL SAMPLES ═══════════ -->
+  <div id="s-dist-slist" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">All Samples</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Kano District Lab · Sep 2026</div></div>
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist-sample')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+    </div>
+    <div style="padding:10px 22px 4px;flex-shrink:0;">
+      <div class="chip-row" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;">
+        <button class="chip on" type="button">All (134)</button>
+        <button class="chip" type="button">Pending (16)</button>
+        <button class="chip" type="button">Complete (110)</button>
+        <button class="chip" type="button">Referred (8)</button>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="lab-item" onclick="go('dist-results')">
+        <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-047 — LF (RDT)</div><div class="lab-item-sub">Female, 24 yrs · Gwale · Today</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist-results')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-046 — STH (Microscopy)</div><div class="lab-item-sub">Male, 8 yrs · Nassarawa · Yesterday</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Complete</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist-refer')">
+        <div class="lab-item-ico" style="background:#FFE4E6;">🩸</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-045 — Schistosomiasis (Urine)</div><div class="lab-item-sub">Female, 31 yrs · Gwale · Sep 14</div></div>
+        <div class="lab-item-right"><span style="background:#EFF6FF;color:#2563EB;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Referred</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist-results')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🫦</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-044 — Trachoma (Clinical)</div><div class="lab-item-sub">Male, 45 yrs · Kano Municipal · Sep 12</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Complete</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist-results')">
+        <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-043 — LF (RDT)</div><div class="lab-item-sub">Male, 38 yrs · Kano Municipal · Sep 11</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending</span></div>
+      </div>
+      <div class="lab-item" onclick="go('dist-results')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">NTD-KN-042 — Onchocerciasis (Skin snip)</div><div class="lab-item-sub">Female, 52 yrs · Fagge · Sep 10</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Complete</span></div>
+      </div>
+      <div style="padding:14px 22px;text-align:center;font-size:12px;color:var(--t2);">Showing 6 of 134 samples</div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('dist-results')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Results</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: INCOMING SAMPLES ═══════════ -->
+  <div id="s-ref-slist" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Incoming Samples</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Awaiting PCR — Sep 2026</div></div>
+    </div>
+    <div style="padding:10px 22px 4px;flex-shrink:0;">
+      <div class="chip-row" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;">
+        <button class="chip on" type="button">All (28)</button>
+        <button class="chip" type="button">Urgent (5)</button>
+        <button class="chip" type="button">Processing (18)</button>
+        <button class="chip" type="button">On hold (5)</button>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="lab-item" onclick="go('ref-pcr')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-089 — LF (Wuchereria bancrofti)</div><div class="lab-item-sub">From Kano Dist. Lab · Today · Urgent</div></div>
+        <div class="lab-item-right"><span style="background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-pcr')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-088 — Trachoma (C. trachomatis)</div><div class="lab-item-sub">From Lagos Dist. Lab · Today · Urgent</div></div>
+        <div class="lab-item-right"><span style="background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-pcr')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-087 — Onchocerciasis (O. volvulus)</div><div class="lab-item-sub">From Kaduna Dist. Lab · Yesterday</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-pcr')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-085 — Schistosomiasis (S. haem.)</div><div class="lab-item-sub">From Ogun Dist. Lab · Sep 15</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-pcr')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-084 — Leprosy (M. leprae)</div><div class="lab-item-sub">From Borno Dist. Lab · Sep 14</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
+      </div>
+      <div style="padding:14px 22px;text-align:center;font-size:12px;color:var(--t2);">Showing 5 of 28 incoming samples</div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('ref-rlist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: PCR RESULTS HISTORY ═══════════ -->
+  <div id="s-ref-rlist" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">PCR Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Validated results — Sep 2026</div></div>
+    </div>
+    <div style="padding:10px 22px 4px;flex-shrink:0;">
+      <div class="chip-row" style="display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;">
+        <button class="chip on" type="button">All (211)</button>
+        <button class="chip" type="button">Positive (89)</button>
+        <button class="chip" type="button">Negative (122)</button>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="lab-item" onclick="go('ref-validate')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-086 — Schisto. PCR Confirmed</div><div class="lab-item-sub">Sokoto Dist. Lab · Sep 15 · S. haematobium +ve</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Validated</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-validate')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-083 — LF Negative (qPCR)</div><div class="lab-item-sub">Oyo Dist. Lab · Sep 14 · Ct = 38.2 (neg)</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Validated</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-validate')">
+        <div class="lab-item-ico" style="background:#FEE2E2;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-082 — Trachoma Confirmed</div><div class="lab-item-sub">Lagos Dist. Lab · Sep 13 · C. trachomatis +ve</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Validated</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-validate')">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-081 — STH Negative (PCR)</div><div class="lab-item-sub">Kano Dist. Lab · Sep 12 · All species neg.</div></div>
+        <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Validated</span></div>
+      </div>
+      <div class="lab-item" onclick="go('ref-dhis2')">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body"><div class="lab-item-ttl">REF-080 — Oncho. Confirmed</div><div class="lab-item-sub">Kaduna Dist. Lab · Sep 11 · O. volvulus +ve</div></div>
+        <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending upload</span></div>
+      </div>
+      <div style="padding:14px 22px;text-align:center;font-size:12px;color:var(--t2);">Showing 5 of 211 results</div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('ref-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-rlist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
 
