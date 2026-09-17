@@ -143,6 +143,69 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
 .btn-suc-sec{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--g50);border:1.5px solid var(--g100);color:var(--g700);border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
 .btn-suc-sec:hover{background:var(--g100);}
 
+/* Splash */
+.splash{background:var(--g700);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;flex:1;position:relative;}
+.splash-logo{width:80px;height:80px;animation:splashPop .6s cubic-bezier(.34,1.56,.64,1) both;}
+.splash-name{font-size:28px;font-weight:800;color:white;letter-spacing:-.5px;margin-top:16px;}
+.splash-tag{font-size:12px;color:rgba(255,255,255,.65);margin-top:4px;letter-spacing:.02em;}
+.splash-dots{display:flex;gap:7px;margin-top:40px;}
+.splash-dots span{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);animation:splashDot 1.2s ease-in-out infinite;}
+.splash-dots span:nth-child(2){animation-delay:.2s;}
+.splash-dots span:nth-child(3){animation-delay:.4s;}
+@keyframes splashPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes splashDot{0%,80%,100%{transform:scale(.7);background:rgba(255,255,255,.3)}40%{transform:scale(1);background:white}}
+
+/* Photo upload */
+.photo-section{margin-top:18px;}
+.photo-label{font-size:12px;font-weight:600;color:var(--t1);margin-bottom:8px;display:block;}
+.photo-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.photo-btn{display:flex;flex-direction:column;align-items:center;gap:7px;padding:16px 10px;border:1.5px dashed var(--bd);border-radius:12px;background:var(--bg);cursor:pointer;font-size:12px;font-weight:600;color:var(--t2);font-family:inherit;transition:all .15s;}
+.photo-btn:hover{border-color:var(--g700);color:var(--g700);background:var(--g50);}
+.photo-btn svg{color:var(--t3);}
+.photo-btn:hover svg{color:var(--g700);}
+.photo-preview{display:none;border-radius:12px;overflow:hidden;border:1.5px solid var(--bd);position:relative;}
+.photo-preview img{width:100%;display:block;}
+.photo-remove{position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.55);border:none;color:white;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+
+/* Role selection cards */
+.role-sel-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:18px;}
+.role-sel-card{display:flex;align-items:center;gap:14px;border:2px solid var(--bd);border-radius:14px;padding:14px;cursor:pointer;transition:all .15s;user-select:none;background:transparent;width:100%;text-align:left;font-family:inherit;font-size:inherit;}
+.role-sel-card.on{border-color:var(--g700);background:var(--g50);}
+.role-sel-card.on-blue{border-color:#2563EB;background:#EFF6FF;}
+.role-sel-card.on-purple{border-color:#7C3AED;background:#F5F3FF;}
+.role-sel-ico{width:44px;height:44px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.role-sel-body{flex:1;}
+.role-sel-name{font-size:13px;font-weight:700;}
+.role-sel-desc{font-size:11px;color:var(--t2);margin-top:2px;line-height:1.4;}
+.role-sel-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--bd);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.role-sel-card.on .role-sel-radio{border-color:var(--g700);background:var(--g700);}
+.role-sel-card.on-blue .role-sel-radio{border-color:#2563EB;background:#2563EB;}
+.role-sel-card.on-purple .role-sel-radio{border-color:#7C3AED;background:#7C3AED;}
+
+/* District/Ref Lab screens */
+.lab-hdr{padding:16px 22px;background:var(--sur);border-bottom:1px solid var(--bd);flex-shrink:0;display:flex;align-items:center;gap:12px;}
+.lab-hdr-logo{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;}
+.lab-hdr-name{font-size:15px;font-weight:800;}
+.lab-hdr-role{font-size:10px;color:var(--t2);margin-top:1px;}
+.lab-menu-btn{margin-left:auto;display:flex;gap:8px;}
+.lab-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 22px;}
+.lab-stat{background:var(--bg);border-radius:12px;padding:14px;}
+.lab-stat-n{font-size:24px;font-weight:800;letter-spacing:-.5px;}
+.lab-stat-l{font-size:10px;color:var(--t2);margin-top:2px;}
+.lab-item{display:flex;align-items:flex-start;gap:12px;padding:13px 22px;border-bottom:1px solid var(--bd);cursor:pointer;}
+.lab-item:hover{background:var(--bg);}
+.lab-item-ico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.lab-item-body{flex:1;}
+.lab-item-ttl{font-size:13px;font-weight:600;}
+.lab-item-sub{font-size:11px;color:var(--t2);margin-top:2px;}
+.lab-item-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
+.lab-quick-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 22px;}
+.lab-qa{border:1.5px solid var(--bd);border-radius:12px;padding:14px;cursor:pointer;display:flex;flex-direction:column;gap:6px;background:var(--sur);}
+.lab-qa:hover{border-color:var(--g200);}
+.lab-qa-ico{font-size:22px;}
+.lab-qa-n{font-size:12px;font-weight:700;}
+.lab-qa-s{font-size:10px;color:var(--t2);}
+
 /* aow footer */
 .aow-foot{text-align:center;font-size:10px;color:var(--t3);letter-spacing:.12em;padding:6px 0 2px;opacity:.5;flex-shrink:0;}
 
@@ -290,8 +353,294 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
   </div>
 
+  <!-- ═══════════ SPLASH ═══════════ -->
+  <div id="s-splash" class="scr on" onclick="go('signup')" style="cursor:pointer;">
+    <div class="splash">
+      <svg class="splash-logo" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="13" fill="rgba(255,255,255,.15)"/><path d="M23 7C14.72 7 8 13.72 8 22c0 8.28 6.72 15 15 15s15-6.72 15-15c0-8.28-6.72-15-15-15z" fill="white" fill-opacity=".1"/><circle cx="18" cy="20" r="3.5" fill="white" opacity=".95"/><path d="M12 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".95"/><circle cx="28" cy="20" r="3.5" fill="white" opacity=".95"/><path d="M22 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".95"/><path d="M23 6l2 4.5c0 1.1-.9 2-2 2s-2-.9-2-2L23 6z" fill="#7EEBB0"/></svg>
+      <div class="splash-name">NTDWatch</div>
+      <div class="splash-tag">Healthy Communities · Stronger Nigeria</div>
+      <div class="splash-dots"><span></span><span></span><span></span></div>
+      <div style="position:absolute;bottom:48px;font-size:11px;color:rgba(255,255,255,.5);">Tap to continue</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ SIGN UP ═══════════ -->
+  <div id="s-signup" class="scr">
+    <div class="scroll">
+      <div style="display:flex;flex-direction:column;align-items:center;padding:36px 22px 0;">
+        <svg width="56" height="56" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="13" fill="#1A6B42"/><circle cx="18" cy="20" r="3.5" fill="white" opacity=".92"/><path d="M12 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".92"/><circle cx="28" cy="20" r="3.5" fill="white" opacity=".92"/><path d="M22 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".92"/><path d="M23 6l2 4.5c0 1.1-.9 2-2 2s-2-.9-2-2L23 6z" fill="#7EEBB0"/></svg>
+        <div style="font-size:20px;font-weight:800;color:var(--g700);margin-top:10px;letter-spacing:-.4px;">NTDWatch</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px;">Healthy Communities · Stronger Nigeria</div>
+      </div>
+      <div class="fbody" style="padding-top:22px;">
+        <div class="sh" style="font-size:21px;">Create your account</div>
+        <div class="ss">Select your role in the NTD surveillance network.</div>
+
+        <div class="role-sel-grid">
+          <button class="role-sel-card on" id="rcard-chw" onclick="pickRole('chw')" type="button">
+            <div class="role-sel-ico" style="background:#E8F5EE;">👥</div>
+            <div class="role-sel-body">
+              <div class="role-sel-name">Community Health Worker / PHC</div>
+              <div class="role-sel-desc">Report signs, symptoms and refer cases in the community</div>
+            </div>
+            <div class="role-sel-radio"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </button>
+          <button class="role-sel-card" id="rcard-dist" onclick="pickRole('dist')" type="button">
+            <div class="role-sel-ico" style="background:#EFF6FF;">🧫</div>
+            <div class="role-sel-body">
+              <div class="role-sel-name">District Laboratory</div>
+              <div class="role-sel-desc">Receive samples and enter RDT / microscopy results</div>
+            </div>
+            <div class="role-sel-radio"></div>
+          </button>
+          <button class="role-sel-card" id="rcard-ref" onclick="pickRole('ref')" type="button">
+            <div class="role-sel-ico" style="background:#F5F3FF;">🔬</div>
+            <div class="role-sel-body">
+              <div class="role-sel-name">Reference Laboratory</div>
+              <div class="role-sel-desc">Perform PCR, validate results and report to DHIS2</div>
+            </div>
+            <div class="role-sel-radio"></div>
+          </button>
+        </div>
+
+        <div class="fld">
+          <label class="flbl">Full name <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <input class="finp" placeholder="Enter your full name">
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl" id="id-label">CHW ID <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></span>
+            <input class="finp" id="id-input" placeholder="e.g. CHW-KN-2847">
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">State <span class="req">*</span></label>
+          <select class="fsel"><option value="">Select your state</option><option selected>Kano</option><option>Lagos</option><option>Abuja</option><option>Kaduna</option><option>Sokoto</option><option>Borno</option></select>
+        </div>
+        <div class="fld">
+          <label class="flbl">Phone number <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.02 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></span>
+            <input class="finp" type="tel" placeholder="080xxxxxxxx">
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Password <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+            <input class="finp" type="password" placeholder="Create a password">
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Confirm password <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+            <input class="finp" type="password" placeholder="Repeat your password">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <button class="btn btn-p" onclick="registerRoute()">Create Account</button>
+      <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--t2);">
+        Already have an account?
+        <button onclick="go('login')" style="background:none;border:none;color:var(--g700);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;">Log in</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB DASHBOARD ═══════════ -->
+  <div id="s-dist" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <div class="lab-hdr-logo" style="background:rgba(255,255,255,.15);">🧫</div>
+      <div>
+        <div class="lab-hdr-name" style="color:white;">District Laboratory</div>
+        <div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Dr. Adewale Bello · Kano</div>
+      </div>
+      <div class="lab-menu-btn">
+        <button class="icon-btn" style="border-color:rgba(255,255,255,.3);color:white;" onclick="go('notif')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></button>
+      </div>
+    </div>
+    <div class="scroll">
+      <div style="padding:16px 22px 4px;">
+        <div style="font-size:18px;font-weight:800;letter-spacing:-.3px;">Good morning 👋</div>
+        <div style="font-size:12px;color:var(--t2);margin-top:2px;">Kano District Laboratory · Sep 17, 2026</div>
+      </div>
+      <div class="lab-stat-grid">
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#1D4ED8;">134</div><div class="lab-stat-l">Samples received (Sep)</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:var(--g700);">118</div><div class="lab-stat-l">Results entered</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#D97706;">16</div><div class="lab-stat-l">Pending results</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#7C3AED;">8</div><div class="lab-stat-l">Referred to ref lab</div></div>
+      </div>
+      <div style="padding:4px 22px 10px;"><div style="font-size:13px;font-weight:700;">Quick Actions</div></div>
+      <div class="lab-quick-actions">
+        <div class="lab-qa"><div class="lab-qa-ico">🧪</div><div class="lab-qa-n">Register Sample</div><div class="lab-qa-s">Log a new incoming sample</div></div>
+        <div class="lab-qa"><div class="lab-qa-ico">📝</div><div class="lab-qa-n">Enter Results</div><div class="lab-qa-s">RDT or microscopy</div></div>
+        <div class="lab-qa"><div class="lab-qa-ico">📤</div><div class="lab-qa-n">Refer to Ref Lab</div><div class="lab-qa-s">Send for PCR confirmation</div></div>
+        <div class="lab-qa"><div class="lab-qa-ico">📦</div><div class="lab-qa-n">Reagent Stock</div><div class="lab-qa-s">Check inventory levels</div></div>
+      </div>
+      <div style="padding:10px 22px 6px;"><div style="font-size:13px;font-weight:700;">Sample Queue</div></div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">NTD-KN-047 — LF (RDT)</div>
+          <div class="lab-item-sub">Female, 24 yrs · Gwale · Received today</div>
+        </div>
+        <div class="lab-item-right"><span class="badge-orange" style="display:inline-block;background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">NTD-KN-046 — STH (Microscopy)</div>
+          <div class="lab-item-sub">Male, 8 yrs · Nassarawa · Yesterday</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Complete</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#FFE4E6;">🩸</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">NTD-KN-045 — Schistosomiasis (Urine)</div>
+          <div class="lab-item-sub">Female, 31 yrs · Gwale · Sep 14</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#EFF6FF;color:#2563EB;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Referred</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🫦</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">NTD-KN-044 — Trachoma (Clinical)</div>
+          <div class="lab-item-sub">Male, 45 yrs · Kano Municipal · Sep 12</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Complete</span></div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i on" style="color:#1D4ED8;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Results</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ REFERENCE LAB DASHBOARD ═══════════ -->
+  <div id="s-ref" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <div class="lab-hdr-logo" style="background:rgba(255,255,255,.15);">🔬</div>
+      <div>
+        <div class="lab-hdr-name" style="color:white;">Reference Laboratory</div>
+        <div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Prof. Ngozi Eze · Lagos</div>
+      </div>
+      <div class="lab-menu-btn">
+        <button class="icon-btn" style="border-color:rgba(255,255,255,.3);color:white;" onclick="go('notif')"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg></button>
+      </div>
+    </div>
+    <div class="scroll">
+      <div style="padding:16px 22px 4px;">
+        <div style="font-size:18px;font-weight:800;letter-spacing:-.3px;">Good morning 👋</div>
+        <div style="font-size:12px;color:var(--t2);margin-top:2px;">National NTD Reference Centre, Lagos · Sep 17, 2026</div>
+      </div>
+      <div class="lab-stat-grid">
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#7C3AED;">28</div><div class="lab-stat-l">Awaiting PCR testing</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:var(--g700);">211</div><div class="lab-stat-l">Results validated (Sep)</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#2563EB;">96%</div><div class="lab-stat-l">QA pass rate</div></div>
+        <div class="lab-stat"><div class="lab-stat-n" style="color:#D97706;">14</div><div class="lab-stat-l">Pending DHIS2 upload</div></div>
+      </div>
+      <div style="padding:4px 22px 10px;"><div style="font-size:13px;font-weight:700;">Quick Actions</div></div>
+      <div class="lab-quick-actions">
+        <div class="lab-qa"><div class="lab-qa-ico">🧬</div><div class="lab-qa-n">Log PCR Result</div><div class="lab-qa-s">Enter molecular result</div></div>
+        <div class="lab-qa"><div class="lab-qa-ico">✅</div><div class="lab-qa-n">Validate Results</div><div class="lab-qa-s">Confirm district findings</div></div>
+        <div class="lab-qa"><div class="lab-qa-ico">📊</div><div class="lab-qa-n">Export to DHIS2</div><div class="lab-qa-s">Upload national data</div></div>
+        <div class="lab-qa"><div class="lab-qa-ico">🛡️</div><div class="lab-qa-n">Quality Assurance</div><div class="lab-qa-s">Review QA reports</div></div>
+      </div>
+      <div style="padding:10px 22px 6px;"><div style="font-size:13px;font-weight:700;">Incoming — Awaiting PCR</div></div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">REF-089 — LF (PCR, Wuchereria)</div>
+          <div class="lab-item-sub">From Kano District Lab · Today · Urgent</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">REF-088 — Trachoma (Molecular Ct)</div>
+          <div class="lab-item-sub">From Lagos District Lab · Today · Urgent</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">REF-087 — Oncho. (Skin snip PCR)</div>
+          <div class="lab-item-sub">From Kaduna District Lab · Yesterday</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
+      </div>
+      <div class="lab-item">
+        <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+        <div class="lab-item-body">
+          <div class="lab-item-ttl">REF-086 — Schisto. (PCR confirmed)</div>
+          <div class="lab-item-sub">From Sokoto District Lab · Sep 15</div>
+        </div>
+        <div class="lab-item-right"><span style="display:inline-block;background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Validated</span></div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i on" style="color:#7C3AED;"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
+      <button class="bnav-i"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ LOG IN ═══════════ -->
+  <div id="s-login" class="scr">
+    <div class="scroll">
+      <div style="display:flex;flex-direction:column;align-items:center;padding:60px 22px 0;">
+        <svg width="64" height="64" viewBox="0 0 46 46" fill="none"><rect width="46" height="46" rx="13" fill="#1A6B42"/><path d="M23 7C14.72 7 8 13.72 8 22c0 8.28 6.72 15 15 15s15-6.72 15-15c0-8.28-6.72-15-15-15z" fill="white" fill-opacity=".08"/><circle cx="18" cy="20" r="3.5" fill="white" opacity=".92"/><path d="M12 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".92"/><circle cx="28" cy="20" r="3.5" fill="white" opacity=".92"/><path d="M22 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".92"/><path d="M23 6l2 4.5c0 1.1-.9 2-2 2s-2-.9-2-2L23 6z" fill="#7EEBB0"/></svg>
+        <div style="font-size:20px;font-weight:800;color:var(--g700);margin-top:12px;letter-spacing:-.4px;">NTDWatch</div>
+        <div style="font-size:11px;color:var(--t2);margin-top:2px;">Healthy Communities · Stronger Nigeria</div>
+      </div>
+      <div class="fbody" style="padding-top:28px;">
+        <div class="sh" style="font-size:22px;">Welcome back</div>
+        <div class="ss">Log in to continue reporting and tracking NTD cases.</div>
+        <div class="fld">
+          <label class="flbl">CHW ID or Phone number <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <input class="finp" placeholder="CHW-KN-2847 or 080xxxxxxxx" value="CHW-KN-2847">
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Password <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></span>
+            <input class="finp" type="password" value="••••••••">
+          </div>
+        </div>
+        <div style="text-align:right;margin-top:-6px;margin-bottom:14px;">
+          <button style="background:none;border:none;color:var(--g700);font-weight:600;font-size:12px;cursor:pointer;font-family:inherit;">Forgot password?</button>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <button class="btn btn-p" onclick="registerRoute()">
+        <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Log In
+      </button>
+      <div style="text-align:center;margin-top:14px;font-size:13px;color:var(--t2);">
+        Don't have an account?
+        <button onclick="go('signup')" style="background:none;border:none;color:var(--g700);font-weight:600;font-size:13px;cursor:pointer;font-family:inherit;">Sign up</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ═══════════ HOME ═══════════ -->
-  <div id="s-home" class="scr on">
+  <div id="s-home" class="scr">
     <div class="scroll">
       <div class="h-topbar">
         <div class="logo">
@@ -505,6 +854,26 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div style="margin-top:16px;">
           <label class="flbl">Additional symptoms (optional)</label>
           <textarea class="ftxt" placeholder="E.g. fever, itching, skin rash, duration, etc."></textarea>
+        </div>
+        <div class="photo-section">
+          <label class="photo-label">Photo evidence (optional)</label>
+          <div class="photo-btns">
+            <button class="photo-btn" onclick="triggerPhoto('camera')">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              Take Photo
+            </button>
+            <button class="photo-btn" onclick="triggerPhoto('gallery')">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              Upload Photo
+            </button>
+          </div>
+          <div class="photo-preview" id="photo-preview">
+            <svg viewBox="0 0 346 160" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;"><rect width="346" height="160" fill="#D1FAE5"/><rect x="123" y="40" width="100" height="80" rx="8" fill="#A3D4B8"/><circle cx="148" cy="62" r="8" fill="#1A6B42" fill-opacity=".4"/><path d="M123 120 L163 85 L193 105 L213 88 L246 120Z" fill="#1A6B42" fill-opacity=".3"/><text x="50%" y="155" font-size="10" fill="#5C6E64" text-anchor="middle" font-family="Inter,sans-serif">Photo preview</text></svg>
+            <button class="photo-remove" onclick="removePhoto()">
+              <svg width="14" height="14" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+          </div>
+          <input type="file" id="photo-input" accept="image/*" style="display:none" onchange="showPhotoPreview()">
         </div>
       </div>
     </div>
@@ -1297,7 +1666,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div style="font-size:12px;color:var(--t3);margin-left:auto;">v2.4.1</div>
         </div>
       </div>
-      <button class="signout-btn" style="cursor:pointer;">
+      <button class="signout-btn" onclick="go('login')">
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
         Sign Out
       </button>
@@ -1392,6 +1761,73 @@ function toggleSym(row) {
 
 function toggleCopt(el) {
   el.classList.toggle('chk');
+}
+
+let currentRole = 'chw';
+
+function pickRole(role) {
+  currentRole = role;
+  const dot = '<svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg>';
+  ['chw','dist','ref'].forEach(r => {
+    const card = document.getElementById('rcard-' + r);
+    if (!card) return;
+    card.classList.remove('on','on-blue','on-purple');
+    card.querySelector('.role-sel-radio').innerHTML = '';
+  });
+  const map = {chw:'on', dist:'on-blue', ref:'on-purple'};
+  const idLabels = {chw:'CHW ID', dist:'Lab Staff ID', ref:'Staff / Scientist ID'};
+  const idPlaceholders = {chw:'e.g. CHW-KN-2847', dist:'e.g. LAB-KN-0042', ref:'e.g. REF-LG-0009'};
+  const card = document.getElementById('rcard-' + role);
+  if (card) {
+    card.classList.add(map[role]);
+    card.querySelector('.role-sel-radio').innerHTML = dot;
+  }
+  const lbl = document.getElementById('id-label');
+  const inp = document.getElementById('id-input');
+  if (lbl) lbl.innerHTML = idLabels[role] + ' <span class="req">*</span>';
+  if (inp) inp.placeholder = idPlaceholders[role];
+}
+
+function registerRoute() {
+  if (currentRole === 'chw') go('home');
+  else if (currentRole === 'dist') go('dist');
+  else go('ref');
+}
+
+setTimeout(() => go('signup'), 2500);
+
+function triggerPhoto(source) {
+  const input = document.getElementById('photo-input');
+  if (source === 'camera') input.setAttribute('capture', 'environment');
+  else input.removeAttribute('capture');
+  input.click();
+}
+
+function showPhotoPreview() {
+  const input = document.getElementById('photo-input');
+  const preview = document.getElementById('photo-preview');
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = e => {
+      preview.querySelector('svg').style.display = 'none';
+      let img = preview.querySelector('img');
+      if (!img) { img = document.createElement('img'); preview.insertBefore(img, preview.querySelector('button')); }
+      img.src = e.target.result;
+      preview.style.display = 'block';
+    };
+    reader.readAsDataURL(input.files[0]);
+  } else {
+    preview.style.display = 'block';
+  }
+}
+
+function removePhoto() {
+  const preview = document.getElementById('photo-preview');
+  const img = preview.querySelector('img');
+  if (img) img.remove();
+  preview.querySelector('svg').style.display = '';
+  preview.style.display = 'none';
+  document.getElementById('photo-input').value = '';
 }
 
 document.querySelectorAll('.chip-row').forEach(row => {
