@@ -1,0 +1,1405 @@
+<title>NTDWatch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --g900:#0A2E1A;--g800:#124430;--g700:#1A6B42;--g600:#217A4C;--g200:#A3D4B8;--g100:#CEEAD8;--g50:#E8F5EE;
+  --sur:#FFFFFF;--bg:#F0F5F1;--t1:#0F1A14;--t2:#5C6E64;--t3:#97A89F;--bd:#D6E3DA;
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--sur:#172018;--bg:#0E1810;--t1:#E2EFE6;--t2:#7A9882;--t3:#4A6052;--bd:#243628;}}
+:root[data-theme="dark"]{--sur:#172018;--bg:#0E1810;--t1:#E2EFE6;--t2:#7A9882;--t3:#4A6052;--bd:#243628;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg);color:var(--t1);display:flex;justify-content:center;align-items:flex-start;padding:28px 12px;min-height:100%;}
+.phone{width:min(390px,100%);min-height:844px;background:var(--sur);border-radius:46px;overflow:hidden;box-shadow:0 28px 70px rgba(0,0,0,.14),0 0 0 1.5px rgba(0,0,0,.07);display:flex;flex-direction:column;}
+
+/* STATUS BAR */
+.sbar{padding:18px 28px 8px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:700;flex-shrink:0;}
+.sbar-icons{display:flex;gap:5px;align-items:center;}
+
+/* SCREENS */
+.scr{display:none;flex-direction:column;flex:1;overflow:hidden;}
+.scr.on{display:flex;}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+
+/* BOTTOM NAV */
+.bnav{display:flex;border-top:1px solid var(--bd);padding:8px 0 26px;flex-shrink:0;background:var(--sur);}
+.bnav-i{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:10px;font-weight:500;color:var(--t3);cursor:pointer;background:none;border:none;font-family:inherit;padding:4px 0;transition:color .15s;}
+.bnav-i.on{color:var(--g700);}
+
+/* ── HOME ── */
+.h-topbar{display:flex;justify-content:space-between;align-items:flex-start;padding:4px 22px 14px;}
+.logo{display:flex;align-items:center;gap:10px;}
+.logo-name{font-size:17px;font-weight:800;color:var(--g700);letter-spacing:-.4px;}
+.logo-sub{font-size:9.5px;color:var(--t2);margin-top:2px;line-height:1.3;}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--bd);background:var(--sur);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t1);}
+.h-hero{padding:0 22px 18px;}
+.greeting{font-size:27px;font-weight:800;line-height:1.2;text-wrap:balance;letter-spacing:-.5px;}
+.greeting-s{font-size:13px;color:var(--t2);margin-top:8px;line-height:1.5;}
+.loc-pill{display:inline-flex;align-items:center;gap:6px;background:var(--g50);border:1px solid var(--g100);border-radius:999px;padding:7px 14px 7px 10px;font-size:13px;font-weight:500;color:var(--g700);margin-top:14px;cursor:pointer;}
+.cta{margin:0 22px 18px;background:var(--g700);border-radius:20px;padding:18px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;border:none;width:calc(100% - 44px);text-align:left;font-family:inherit;transition:background .15s;}
+.cta:hover{background:var(--g800);}
+.cta-circ{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cta-txt{color:white;}
+.cta-txt-h{font-size:16px;font-weight:700;}
+.cta-txt-s{font-size:12px;opacity:.75;margin-top:2px;}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 22px 24px;}
+.qcard{border:1.5px solid var(--bd);border-radius:14px;padding:16px;cursor:pointer;transition:border-color .15s;background:var(--sur);}
+.qcard:hover{border-color:var(--g200);}
+.qcard-ico{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px;}
+.qcard-n{font-size:13px;font-weight:700;}
+.qcard-s{font-size:11px;color:var(--t2);margin-top:3px;}
+
+/* ── FORM SHELL ── */
+.fbar{display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid var(--bd);flex-shrink:0;}
+.back-btn{width:36px;height:36px;border-radius:50%;border:none;background:none;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--t1);flex-shrink:0;}
+.back-btn:hover{background:var(--bg);}
+.ftitle{font-size:16px;font-weight:700;text-align:center;flex:1;}
+.fbar-ph{width:36px;flex-shrink:0;}
+
+/* Stepper */
+.stepper{display:flex;align-items:flex-start;padding:14px 22px 6px;flex-shrink:0;}
+.st{flex:1;display:flex;flex-direction:column;align-items:center;position:relative;}
+.st:not(:last-child)::after{content:'';position:absolute;top:10px;left:calc(50% + 12px);right:calc(-50% + 12px);height:2px;background:var(--bd);}
+.st.done:not(:last-child)::after,.st.go:not(:last-child)::after{background:var(--g700);}
+.st-n{width:22px;height:22px;border-radius:50%;background:var(--bd);color:white;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;z-index:1;position:relative;}
+.st.go .st-n,.st.done .st-n{background:var(--g700);}
+.st-l{font-size:9px;color:var(--t3);margin-top:5px;text-align:center;white-space:nowrap;}
+.st.go .st-l,.st.done .st-l{color:var(--g700);font-weight:600;}
+
+/* Fields */
+.fbody{padding:18px 22px 8px;}
+.sh{font-size:19px;font-weight:800;letter-spacing:-.4px;text-wrap:balance;margin-bottom:4px;}
+.ss{font-size:13px;color:var(--t2);margin-bottom:20px;line-height:1.5;}
+.fld{margin-bottom:14px;}
+.flbl{display:block;font-size:12px;font-weight:600;color:var(--t1);margin-bottom:6px;}
+.req{color:var(--g700);}
+.finp,.fsel,.ftxt{width:100%;border:1.5px solid var(--bd);border-radius:9px;padding:11px 13px;font-size:14px;color:var(--t1);background:var(--sur);font-family:inherit;outline:none;transition:border-color .15s;}
+.finp:focus,.fsel:focus,.ftxt:focus{border-color:var(--g700);box-shadow:0 0 0 3px rgba(26,107,66,.1);}
+.finp::placeholder,.ftxt::placeholder{color:var(--t3);}
+.fsel{appearance:none;background-image:url("data:image/svg+xml,%3Csvg width='11' height='7' viewBox='0 0 11 7' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4.5 4.5L10 1' stroke='%2397A89F' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;cursor:pointer;}
+.ftxt{resize:none;height:72px;}
+.icon-wrap{position:relative;}
+.icon-wrap .finp{padding-left:38px;}
+.iico{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--t3);display:flex;}
+.addon-row{display:flex;align-items:center;gap:8px;}
+.addon-row .finp{flex:1;}
+.addon-txt{font-size:13px;color:var(--t2);}
+.rrow{display:flex;gap:18px;align-items:center;}
+.rlbl{display:flex;align-items:center;gap:7px;font-size:14px;cursor:pointer;}
+.rlbl input[type=radio]{accent-color:var(--g700);width:16px;height:16px;}
+.loc-auto{width:100%;display:flex;align-items:center;gap:10px;border:1.5px solid var(--bd);border-radius:9px;padding:11px 13px;background:var(--sur);cursor:pointer;font-size:14px;color:var(--t3);font-family:inherit;text-align:left;}
+.loc-auto .loc-ico{margin-left:auto;color:var(--g700);}
+.fdivlbl{font-size:11px;font-weight:600;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin:10px 0 8px;}
+
+/* Footer */
+.ffooter{padding:12px 22px 28px;flex-shrink:0;}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;padding:15px;width:100%;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;border:none;transition:background .15s;}
+.btn-p{background:var(--g700);color:white;}
+.btn-p:hover{background:var(--g800);}
+.btn-o{background:transparent;color:var(--t1);border:1.5px solid var(--bd);}
+.btn-o:hover{border-color:var(--t2);}
+.btn-row{display:grid;grid-template-columns:1fr 2fr;gap:10px;}
+
+/* Symptoms */
+.slist{border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;}
+.sitem{display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;border-bottom:1px solid var(--bd);transition:background .1s;user-select:none;}
+.sitem:last-child{border-bottom:none;}
+.sitem:hover,.sitem.chk{background:var(--g50);}
+.sico{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:21px;flex-shrink:0;}
+.sinfo{flex:1;}
+.sname{font-size:13px;font-weight:600;}
+.sdesc{font-size:11px;color:var(--t2);margin-top:1px;}
+.schk{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--bd);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.sitem.chk .schk{background:var(--g700);border-color:var(--g700);}
+
+/* Mental/stigma options */
+.ropts{display:flex;flex-direction:column;gap:10px;}
+.ropt{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1.5px solid var(--bd);border-radius:9px;cursor:pointer;font-size:14px;transition:border-color .15s;}
+.ropt:has(input:checked){border-color:var(--g700);background:var(--g50);}
+.ropt input[type=radio]{accent-color:var(--g700);width:16px;height:16px;}
+.copts{display:flex;flex-direction:column;gap:8px;margin-top:10px;}
+.copt{display:flex;align-items:flex-start;gap:10px;padding:12px;border:1.5px solid var(--bd);border-radius:9px;cursor:pointer;font-size:13px;user-select:none;transition:all .15s;}
+.copt.chk{border-color:var(--g700);background:var(--g50);}
+.cchk{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--bd);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s;}
+.copt.chk .cchk{background:var(--g700);border-color:var(--g700);}
+
+/* Review */
+.rblock{background:var(--bg);border-radius:14px;padding:15px;margin-bottom:12px;}
+.rblock-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.rblock-ttl{font-size:13px;font-weight:700;}
+.redit{font-size:12px;color:var(--g700);font-weight:600;background:none;border:none;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:3px;}
+.rrow{display:flex;gap:10px;padding:3px 0;align-items:flex-start;}
+.rkey{font-size:12px;color:var(--t2);min-width:100px;flex-shrink:0;}
+.rval{font-size:12px;color:var(--t1);font-weight:500;}
+.rtag{display:inline-block;background:var(--g50);color:var(--g700);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:600;margin-top:4px;}
+
+/* Success */
+.suc-wrap{display:flex;flex-direction:column;align-items:center;padding:36px 24px 40px;text-align:center;flex:1;}
+.suc-h{font-size:24px;font-weight:800;letter-spacing:-.5px;margin-bottom:8px;text-wrap:balance;}
+.suc-p{font-size:14px;color:var(--t2);line-height:1.6;max-width:280px;}
+.suc-badge{margin-top:20px;background:var(--g50);border:1px solid var(--g100);border-radius:14px;padding:14px 20px;font-size:13px;font-weight:600;color:var(--g700);line-height:1.5;text-wrap:balance;width:100%;}
+.suc-actions{width:100%;margin-top:auto;padding-top:28px;display:flex;flex-direction:column;gap:10px;}
+.btn-suc-sec{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--g50);border:1.5px solid var(--g100);color:var(--g700);border-radius:10px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn-suc-sec:hover{background:var(--g100);}
+
+/* aow footer */
+.aow-foot{text-align:center;font-size:10px;color:var(--t3);letter-spacing:.12em;padding:6px 0 2px;opacity:.5;flex-shrink:0;}
+
+/* Badges */
+.badge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:600;}
+.badge-green{background:var(--g50);color:var(--g700);}
+.badge-blue{background:#EFF6FF;color:#2563EB;}
+.badge-orange{background:#FFFBEB;color:#EA8C00;}
+.badge-gray{background:var(--bg);color:var(--t2);}
+
+/* Chips */
+.chip-row{display:flex;gap:8px;padding:0 22px 14px;overflow-x:auto;scrollbar-width:none;flex-shrink:0;}
+.chip-row::-webkit-scrollbar{display:none;}
+.chip{border:1.5px solid var(--bd);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;cursor:pointer;background:var(--sur);color:var(--t2);white-space:nowrap;font-family:inherit;}
+.chip.on{background:var(--g700);color:white;border-color:var(--g700);}
+
+/* Report cards */
+.report-card{display:flex;align-items:flex-start;gap:12px;padding:14px 22px;border-bottom:1px solid var(--bd);cursor:pointer;}
+.report-card:hover{background:var(--bg);}
+.rcard-ico{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.rcard-body{flex:1;min-width:0;}
+.rcard-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+.rcard-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.rcard-date{font-size:11px;color:var(--t3);white-space:nowrap;flex-shrink:0;}
+.rcard-sub{font-size:12px;color:var(--t2);margin-top:2px;}
+.rcard-foot{margin-top:6px;}
+
+/* Stats tiles */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 22px;}
+.stat-tile{background:var(--bg);border-radius:12px;padding:12px;text-align:center;}
+.stat-n{font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px;}
+.stat-l{font-size:10px;color:var(--t2);margin-top:2px;font-weight:500;}
+
+/* Training */
+.train-card{display:flex;align-items:flex-start;gap:12px;padding:14px 22px;border-bottom:1px solid var(--bd);cursor:pointer;}
+.train-card:hover{background:var(--bg);}
+.train-ico{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;}
+.train-body{flex:1;min-width:0;}
+.train-title{font-size:13px;font-weight:700;}
+.train-meta{font-size:11px;color:var(--t2);margin-top:2px;}
+.train-progress{height:4px;background:var(--bd);border-radius:2px;overflow:hidden;margin-top:8px;}
+.train-progress-bar{height:100%;background:var(--g700);border-radius:2px;}
+.train-search{margin:0 22px 12px;position:relative;}
+.train-search input{width:100%;border:1.5px solid var(--bd);border-radius:9px;padding:10px 13px 10px 38px;font-size:14px;background:var(--sur);color:var(--t1);font-family:inherit;outline:none;}
+.train-search input:focus{border-color:var(--g700);}
+.train-search .sico2{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--t3);}
+
+/* Commodity grid */
+.comm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 22px 18px;}
+.comm-card{border:1.5px solid var(--bd);border-radius:14px;padding:14px;cursor:pointer;user-select:none;transition:all .15s;display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+.comm-card.on{border-color:var(--g700);background:var(--g50);}
+.comm-card .cchk2{width:18px;height:18px;border-radius:4px;border:1.5px solid var(--bd);display:flex;align-items:center;justify-content:center;align-self:flex-end;transition:all .15s;}
+.comm-card.on .cchk2{background:var(--g700);border-color:var(--g700);}
+.comm-ico{font-size:24px;}
+.comm-name{font-size:12px;font-weight:700;}
+
+/* Notifications */
+.notif-item{display:flex;align-items:flex-start;gap:12px;padding:14px 22px;border-bottom:1px solid var(--bd);cursor:pointer;}
+.notif-item.unread{background:var(--g50);}
+.notif-item:hover{background:var(--bg);}
+.notif-dot{width:8px;height:8px;border-radius:50%;background:var(--g700);flex-shrink:0;margin-top:5px;}
+.notif-dot.read{background:transparent;}
+.notif-ico2{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;}
+.notif-body{flex:1;}
+.notif-title{font-size:13px;font-weight:600;}
+.notif-sub{font-size:12px;color:var(--t2);margin-top:2px;line-height:1.4;}
+.notif-time{font-size:11px;color:var(--t3);margin-top:4px;}
+
+/* Detail screen */
+.detail-hero{background:var(--g700);padding:20px 22px 22px;}
+.detail-hero .fbar{background:transparent;border:none;padding:0 0 12px;}
+.detail-hero .back-btn{color:white;border-color:rgba(255,255,255,.3);}
+.detail-hero .ftitle{color:white;}
+.dref{font-size:12px;color:rgba(255,255,255,.7);margin-bottom:6px;}
+.dname{font-size:22px;font-weight:800;color:white;letter-spacing:-.4px;}
+.dsub{font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;}
+.dblock{padding:16px 22px;border-bottom:1px solid var(--bd);}
+.dblock-ttl{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;}
+.drow{display:flex;gap:10px;padding:3px 0;align-items:flex-start;}
+.dkey{font-size:12px;color:var(--t2);min-width:120px;flex-shrink:0;}
+.dval{font-size:12px;color:var(--t1);font-weight:500;}
+.d-actions{display:flex;gap:10px;padding:18px 22px;}
+.d-action-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--bd);border-radius:10px;padding:13px;font-size:13px;font-weight:600;cursor:pointer;background:var(--sur);color:var(--t1);font-family:inherit;}
+.d-action-btn:hover{border-color:var(--g700);color:var(--g700);}
+
+/* Map */
+.map-wrap{flex:1;position:relative;overflow:hidden;}
+.map-svg{width:100%;height:100%;object-fit:contain;}
+.map-stats{display:flex;gap:0;border-top:1px solid var(--bd);flex-shrink:0;}
+.map-stat{flex:1;padding:10px 0;text-align:center;border-right:1px solid var(--bd);}
+.map-stat:last-child{border-right:none;}
+.map-stat-n{font-size:16px;font-weight:800;color:var(--t1);}
+.map-stat-l{font-size:9px;color:var(--t2);margin-top:1px;}
+.map-legend{padding:10px 16px;display:flex;flex-wrap:wrap;gap:8px 14px;border-bottom:1px solid var(--bd);flex-shrink:0;}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--t2);}
+.leg-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.map-topbar{padding:10px 16px 6px;display:flex;justify-content:space-between;align-items:center;flex-shrink:0;}
+.map-ttl{font-size:16px;font-weight:800;}
+.map-period{font-size:11px;color:var(--t2);}
+
+/* More / Profile */
+.profile-hero{background:var(--g700);padding:30px 22px 24px;display:flex;align-items:center;gap:14px;}
+.profile-avatar{width:58px;height:58px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.profile-name{font-size:18px;font-weight:800;color:white;letter-spacing:-.3px;}
+.profile-role{font-size:12px;color:rgba(255,255,255,.75);margin-top:2px;}
+.profile-id{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px;}
+.menu-section{padding:14px 22px 0;}
+.menu-sec-ttl{font-size:11px;font-weight:700;color:var(--t3);letter-spacing:.05em;text-transform:uppercase;margin-bottom:8px;}
+.menu-item{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid var(--bd);cursor:pointer;}
+.menu-item:last-child{border-bottom:none;}
+.menu-ico{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.menu-label{flex:1;font-size:14px;font-weight:500;}
+.menu-chevron{color:var(--t3);}
+.signout-btn{margin:18px 22px;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid #FEE2E2;border-radius:10px;padding:14px;background:#FFF5F5;color:#DC2626;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;width:calc(100% - 44px);}
+
+/* Training detail */
+.train-hero{background:var(--g700);padding:14px 22px 22px;}
+.train-hero .fbar{background:transparent;border:none;padding:0 0 10px;}
+.train-hero .back-btn{color:white;border-color:rgba(255,255,255,.3);}
+.train-hero .ftitle{color:white;font-size:15px;}
+.train-h{font-size:20px;font-weight:800;color:white;letter-spacing:-.4px;margin-bottom:4px;}
+.train-cat{font-size:12px;color:rgba(255,255,255,.75);}
+.train-prog-hero{margin-top:12px;}
+.train-prog-bg{height:5px;background:rgba(255,255,255,.25);border-radius:3px;overflow:hidden;}
+.train-prog-fill{height:100%;background:white;border-radius:3px;}
+.train-prog-txt{font-size:11px;color:rgba(255,255,255,.75);margin-top:4px;}
+.content-block{padding:16px 22px;border-bottom:1px solid var(--bd);}
+.content-h{font-size:15px;font-weight:700;margin-bottom:8px;}
+.content-p{font-size:13px;color:var(--t2);line-height:1.65;}
+.quiz-block{margin:0 22px 18px;border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;}
+.quiz-q{padding:14px;font-size:13px;font-weight:700;background:var(--bg);}
+.quiz-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;border-top:1px solid var(--bd);cursor:pointer;font-size:13px;}
+.quiz-opt:hover{background:var(--g50);}
+.quiz-opt input[type=radio]{accent-color:var(--g700);}
+</style>
+
+<div class="phone">
+  <!-- STATUS BAR -->
+  <div class="sbar">
+    <span>9:41</span>
+    <div class="sbar-icons">
+      <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="4" width="3" height="8" rx="1" opacity=".4"/><rect x="4.5" y="2.5" width="3" height="9.5" rx="1" opacity=".6"/><rect x="9" y="1" width="3" height="11" rx="1" opacity=".8"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1 4.5C3.5 2 6.6 1 8 1s4.5 1 7 3.5"/><path d="M3.5 7C5 5.5 6.5 5 8 5s3 .5 4.5 2"/><circle cx="8" cy="10" r="1.2" fill="currentColor" stroke="none"/></svg>
+      <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="22" height="11" rx="3.5" stroke="currentColor" stroke-opacity=".35"/><rect x="2" y="2" width="17" height="8" rx="2" fill="currentColor"/><path d="M23.5 4.5v3a1.5 1.5 0 000-3z" fill="currentColor" fill-opacity=".4"/></svg>
+    </div>
+  </div>
+
+  <!-- ═══════════ HOME ═══════════ -->
+  <div id="s-home" class="scr on">
+    <div class="scroll">
+      <div class="h-topbar">
+        <div class="logo">
+          <!-- Logo mark -->
+          <svg class="logo-mark" width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="46" height="46" rx="13" fill="#1A6B42"/>
+            <path d="M23 7C14.72 7 8 13.72 8 22c0 8.28 6.72 15 15 15s15-6.72 15-15c0-8.28-6.72-15-15-15z" fill="white" fill-opacity=".08"/>
+            <circle cx="18" cy="20" r="3.5" fill="white" opacity=".92"/>
+            <path d="M12 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".92"/>
+            <circle cx="28" cy="20" r="3.5" fill="white" opacity=".92"/>
+            <path d="M22 32c0-3.31 2.69-6 6-6s6 2.69 6 6" stroke="white" stroke-width="2" stroke-linecap="round" fill="none" opacity=".92"/>
+            <path d="M23 6l2 4.5c0 1.1-.9 2-2 2s-2-.9-2-2L23 6z" fill="#7EEBB0"/>
+          </svg>
+          <div>
+            <div class="logo-name">NTDWatch</div>
+            <div class="logo-sub">Healthy Communities<br>Stronger Nigeria</div>
+          </div>
+        </div>
+        <button class="icon-btn" aria-label="Notifications" onclick="go('notif')">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/></svg>
+        </button>
+      </div>
+
+      <div class="h-hero">
+        <div class="greeting">Good morning,<br>Chioma 👋</div>
+        <div class="greeting-s">Report cases, track your community,<br>make a difference.</div>
+        <div class="loc-pill">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/></svg>
+          Kano State
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 3.5l3 3 3-3"/></svg>
+        </div>
+      </div>
+
+      <button class="cta" onclick="go('step1')">
+        <div class="cta-circ">
+          <svg width="24" height="24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        </div>
+        <div class="cta-txt">
+          <div class="cta-txt-h">Report a Case</div>
+          <div class="cta-txt-s">NTD or related symptoms</div>
+        </div>
+        <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" style="margin-left:auto;opacity:.6"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+
+      <div class="qgrid">
+        <div class="qcard" onclick="go('reports')">
+          <div class="qcard-ico" style="background:#EBF2FF;">📋</div>
+          <div class="qcard-n">My Reports</div>
+          <div class="qcard-s">View submitted cases</div>
+        </div>
+        <div class="qcard" onclick="go('commodities')">
+          <div class="qcard-ico" style="background:#FFF0F0;">📦</div>
+          <div class="qcard-n">Report Commodities</div>
+          <div class="qcard-s">Drugs &amp; test kits</div>
+        </div>
+        <div class="qcard" onclick="go('training')">
+          <div class="qcard-ico" style="background:#EBF2FF;">📖</div>
+          <div class="qcard-n">Training &amp; Guides</div>
+          <div class="qcard-s">Learn and refresh</div>
+        </div>
+        <div class="qcard" onclick="go('map')">
+          <div class="qcard-ico" style="background:#F5EBFF;">📍</div>
+          <div class="qcard-n">Community Map</div>
+          <div class="qcard-s">See reports in your area</div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="bnav">
+      <button class="bnav-i on" onclick="go('home')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button class="bnav-i" onclick="go('reports')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        Reports
+      </button>
+      <button class="bnav-i" onclick="go('map')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+        Map
+      </button>
+      <button class="bnav-i" onclick="go('more')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        More
+      </button>
+    </nav>
+  </div>
+
+  <!-- ═══════════ STEP 1: Person Info ═══════════ -->
+  <div id="s-step1" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report a Case</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stepper">
+      <div class="st go"><div class="st-n">1</div><div class="st-l">Person Info</div></div>
+      <div class="st"><div class="st-n">2</div><div class="st-l">Condition</div></div>
+      <div class="st"><div class="st-n">3</div><div class="st-l">Social &amp; Mental</div></div>
+      <div class="st"><div class="st-n">4</div><div class="st-l">Review</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Person Information</div>
+        <div class="ss">Tell us about the person you are reporting.</div>
+        <div class="fld">
+          <label class="flbl">Full name (optional)</label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+            <input class="finp" placeholder="Enter name or use unique ID">
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Age (exact age) <span class="req">*</span></label>
+          <div class="addon-row">
+            <div class="icon-wrap" style="flex:1">
+              <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+              <input class="finp" type="number" placeholder="Enter age in years">
+            </div>
+            <span class="addon-txt">years</span>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Sex <span class="req">*</span></label>
+          <div class="rrow">
+            <label class="rlbl"><input type="radio" name="sex" value="male"> Male</label>
+            <label class="rlbl"><input type="radio" name="sex" value="female"> Female</label>
+            <label class="rlbl"><input type="radio" name="sex" value="other"> Other</label>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Location <span class="req">*</span></label>
+          <button class="loc-auto">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+            Use my current location
+            <span class="loc-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+          </button>
+        </div>
+        <div class="fdivlbl">Or select manually</div>
+        <div class="fld">
+          <label class="flbl">State</label>
+          <select class="fsel"><option>Kano</option><option>Lagos</option><option>Abuja</option><option>Kaduna</option></select>
+        </div>
+        <div class="fld">
+          <label class="flbl">LGA</label>
+          <select class="fsel"><option value="">Select LGA</option><option>Kano Municipal</option><option>Nassarawa</option><option>Gwale</option></select>
+        </div>
+        <div class="fld">
+          <label class="flbl">Community</label>
+          <select class="fsel"><option value="">Select community</option><option>Gwale Central</option><option>Kurmi Market</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <button class="btn btn-p" onclick="go('step2')">
+        Next
+        <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════ STEP 2: Condition ═══════════ -->
+  <div id="s-step2" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('step1')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report a Case</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stepper">
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Person Info</div></div>
+      <div class="st go"><div class="st-n">2</div><div class="st-l">Condition</div></div>
+      <div class="st"><div class="st-n">3</div><div class="st-l">Social &amp; Mental</div></div>
+      <div class="st"><div class="st-n">4</div><div class="st-l">Review</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Signs, Symptoms or Condition</div>
+        <div class="ss">Select the main sign or symptom you are reporting. You can select more than one.</div>
+        <div class="slist">
+          <div class="sitem" onclick="toggleSym(this)">
+            <div class="sico" style="background:#DBEAFE;">🥾</div>
+            <div class="sinfo"><div class="sname">Lymphatic Filariasis</div><div class="sdesc">(Swollen limbs)</div></div>
+            <div class="schk"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>
+          <div class="sitem" onclick="toggleSym(this)">
+            <div class="sico" style="background:#FFE4E6;">🩸</div>
+            <div class="sinfo"><div class="sname">Schistosomiasis</div><div class="sdesc">(Blood in urine)</div></div>
+            <div class="schk"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>
+          <div class="sitem" onclick="toggleSym(this)">
+            <div class="sico" style="background:#FEF3C7;">👁️</div>
+            <div class="sinfo"><div class="sname">Onchocerciasis</div><div class="sdesc">(Eye problems)</div></div>
+            <div class="schk"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>
+          <div class="sitem chk" onclick="toggleSym(this)">
+            <div class="sico" style="background:#D1FAE5;">🪱</div>
+            <div class="sinfo"><div class="sname">Soil-transmitted helminths</div><div class="sdesc">(Intestinal worms)</div></div>
+            <div class="schk"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>
+          <div class="sitem" onclick="toggleSym(this)">
+            <div class="sico" style="background:#EDE9FE;">🫦</div>
+            <div class="sinfo"><div class="sname">Trachoma</div><div class="sdesc">(Eye/skin signs)</div></div>
+            <div class="schk"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>
+          <div class="sitem" onclick="toggleSym(this)">
+            <div class="sico" style="background:#F3F4F6;">•••</div>
+            <div class="sinfo"><div class="sname">Other NTD condition</div></div>
+            <div class="schk"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+          </div>
+        </div>
+        <div style="margin-top:16px;">
+          <label class="flbl">Additional symptoms (optional)</label>
+          <textarea class="ftxt" placeholder="E.g. fever, itching, skin rash, duration, etc."></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <div class="btn-row">
+        <button class="btn btn-o" onclick="go('step1')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn btn-p" onclick="go('step3a')">
+          Next
+          <svg width="15" height="15" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ STEP 3a: Social & Economic ═══════════ -->
+  <div id="s-step3a" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('step2')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report a Case</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stepper">
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Person Info</div></div>
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Condition</div></div>
+      <div class="st go"><div class="st-n">3</div><div class="st-l">Social &amp; Mental</div></div>
+      <div class="st"><div class="st-n">4</div><div class="st-l">Review</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Social and Economic Information</div>
+        <div class="ss">This helps us understand the person's situation.</div>
+        <div class="fld">
+          <label class="flbl">Employment status <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg></span>
+            <select class="fsel" style="padding-left:38px"><option value="">Select option</option><option>Employed (formal)</option><option selected>Not employed</option><option>Self-employed</option><option>Student</option></select>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">If employed, what is the main source of income?</label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></span>
+            <select class="fsel" style="padding-left:38px"><option selected>Supported by family</option><option>Farming</option><option>Trading</option><option>Government salary</option></select>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">If other, please specify</label>
+          <input class="finp" placeholder="Enter source of income">
+        </div>
+        <div class="fld">
+          <label class="flbl">Marital status <span class="req">*</span></label>
+          <div class="icon-wrap">
+            <span class="iico"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></span>
+            <select class="fsel" style="padding-left:38px"><option value="">Select option</option><option selected>Single</option><option>Married</option><option>Divorced</option><option>Widowed</option></select>
+          </div>
+        </div>
+        <div class="fld">
+          <label class="flbl">Educational level (optional)</label>
+          <select class="fsel"><option value="">Select option</option><option>No formal education</option><option>Primary</option><option>Secondary</option><option>Tertiary</option></select>
+        </div>
+        <div class="fld">
+          <label class="flbl">Household type (optional)</label>
+          <select class="fsel"><option value="">Select option</option><option>Nuclear family</option><option>Extended family</option><option>Single-person</option></select>
+        </div>
+        <div class="fld">
+          <label class="flbl">Monthly household income (approximate, optional)</label>
+          <select class="fsel"><option value="">Select option</option><option>Below ₦30,000</option><option>₦30,000–₦70,000</option><option>₦70,000–₦150,000</option><option>Above ₦150,000</option></select>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <div class="btn-row">
+        <button class="btn btn-o" onclick="go('step2')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn btn-p" onclick="go('step3b')">
+          Next
+          <svg width="15" height="15" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ STEP 3b: Mental Health ═══════════ -->
+  <div id="s-step3b" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('step3a')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report a Case</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stepper">
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Person Info</div></div>
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Condition</div></div>
+      <div class="st go"><div class="st-n">3</div><div class="st-l">Social &amp; Mental</div></div>
+      <div class="st"><div class="st-n">4</div><div class="st-l">Review</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Mental Health and Wellbeing</div>
+        <div class="ss">Please answer based on what the person tells you or you observe.</div>
+        <div class="fld">
+          <label class="flbl">How is the person's mental health? <span class="req">*</span></label>
+          <div class="ropts" style="margin-top:8px;">
+            <label class="ropt"><input type="radio" name="mental" value="none"> No signs of mental health issues</label>
+            <label class="ropt"><input type="radio" name="mental" value="stress" checked> Shows signs of stress, anxiety or sadness</label>
+            <label class="ropt"><input type="radio" name="mental" value="known"> Known mental health condition</label>
+            <label class="ropt"><input type="radio" name="mental" value="unsure"> Not sure</label>
+          </div>
+        </div>
+        <div class="fld" style="margin-top:16px;">
+          <label class="flbl">Any support needed? (optional)</label>
+          <textarea class="ftxt" placeholder="E.g. counselling, referral, follow up"></textarea>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <div class="btn-row">
+        <button class="btn btn-o" onclick="go('step3a')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn btn-p" onclick="go('step3c')">
+          Next
+          <svg width="15" height="15" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ STEP 3c: Stigma ═══════════ -->
+  <div id="s-step3c" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('step3b')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report a Case</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stepper">
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Person Info</div></div>
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Condition</div></div>
+      <div class="st go"><div class="st-n">3</div><div class="st-l">Social &amp; Mental</div></div>
+      <div class="st"><div class="st-n">4</div><div class="st-l">Review</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Stigma and Previous Experiences</div>
+        <div class="ss">This helps us understand if the person has faced discrimination or trauma.</div>
+        <div class="fld">
+          <label class="flbl">Has the person experienced stigma or discrimination related to this or any previous illness? <span class="req">*</span></label>
+          <div class="rrow" style="margin-top:10px;">
+            <label class="rlbl"><input type="radio" name="stigma" value="yes" checked> Yes</label>
+            <label class="rlbl"><input type="radio" name="stigma" value="no"> No</label>
+            <label class="rlbl"><input type="radio" name="stigma" value="unsure"> Not sure</label>
+          </div>
+        </div>
+        <div class="fld" style="margin-top:16px;">
+          <label class="flbl">If yes, what type? (select all that apply)</label>
+          <div class="copts">
+            <div class="copt chk" onclick="toggleCopt(this)">
+              <div class="cchk"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+              Social exclusion (e.g. avoided by others)
+            </div>
+            <div class="copt" onclick="toggleCopt(this)">
+              <div class="cchk"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+              Problems at work or school
+            </div>
+            <div class="copt chk" onclick="toggleCopt(this)">
+              <div class="cchk"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+              Verbal abuse or teasing
+            </div>
+            <div class="copt" onclick="toggleCopt(this)">
+              <div class="cchk"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+              Difficulty accessing healthcare
+            </div>
+            <div class="copt" onclick="toggleCopt(this)">
+              <div class="cchk"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+              Other
+            </div>
+          </div>
+          <input class="finp" placeholder="Please specify" style="margin-top:10px;">
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <div class="btn-row">
+        <button class="btn btn-o" onclick="go('step3b')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn btn-p" onclick="go('step4')">
+          Next
+          <svg width="15" height="15" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ STEP 4: Review ═══════════ -->
+  <div id="s-step4" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('step3c')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report a Case</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stepper">
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Person Info</div></div>
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Condition</div></div>
+      <div class="st done"><div class="st-n"><svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div><div class="st-l">Social &amp; Mental</div></div>
+      <div class="st go"><div class="st-n">4</div><div class="st-l">Review</div></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Review and Submit</div>
+        <div class="ss">Please confirm the information is correct before submitting.</div>
+
+        <div class="rblock">
+          <div class="rblock-hdr">
+            <div class="rblock-ttl">Person Information</div>
+            <button class="redit" onclick="go('step1')">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit
+            </button>
+          </div>
+          <div class="rrow"><span class="rkey">Age</span><span class="rval">24 years</span></div>
+          <div class="rrow"><span class="rkey">Sex</span><span class="rval">Female</span></div>
+          <div class="rrow"><span class="rkey">Location</span><span class="rval">Kano, Kano Municipal, Gwale</span></div>
+        </div>
+
+        <div class="rblock">
+          <div class="rblock-hdr">
+            <div class="rblock-ttl">Condition</div>
+            <button class="redit" onclick="go('step2')">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit
+            </button>
+          </div>
+          <div class="rrow"><span class="rkey">Condition</span><span class="rval"><span class="rtag">🥾 Lymphatic Filariasis</span></span></div>
+          <div class="rrow" style="margin-top:4px;"><span class="rkey">Other symptoms</span><span class="rval">Swelling of both legs for 2 months</span></div>
+        </div>
+
+        <div class="rblock">
+          <div class="rblock-hdr">
+            <div class="rblock-ttl">Social &amp; Economic</div>
+            <button class="redit" onclick="go('step3a')">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit
+            </button>
+          </div>
+          <div class="rrow"><span class="rkey">Employment</span><span class="rval">Not employed</span></div>
+          <div class="rrow"><span class="rkey">Source of income</span><span class="rval">Supported by family</span></div>
+          <div class="rrow"><span class="rkey">Marital status</span><span class="rval">Single</span></div>
+        </div>
+
+        <div class="rblock">
+          <div class="rblock-hdr">
+            <div class="rblock-ttl">Mental Health &amp; Stigma</div>
+            <button class="redit" onclick="go('step3b')">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Edit
+            </button>
+          </div>
+          <div class="rrow"><span class="rkey">Mental health</span><span class="rval">Signs of stress / anxiety</span></div>
+          <div class="rrow"><span class="rkey">Stigma</span><span class="rval">Social exclusion, Verbal abuse</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <div class="btn-row">
+        <button class="btn btn-o" onclick="go('step3c')">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Back
+        </button>
+        <button class="btn btn-p" onclick="go('success')">
+          <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Submit Report
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ SUCCESS ═══════════ -->
+  <div id="s-success" class="scr">
+    <div class="scroll">
+      <div class="suc-wrap">
+        <!-- Illustration -->
+        <svg class="suc-illo" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="90" cy="90" r="90" fill="#E8F5EE"/>
+          <!-- Body -->
+          <rect x="60" y="90" width="60" height="70" rx="12" fill="#1A6B42"/>
+          <!-- Head -->
+          <circle cx="90" cy="78" r="22" fill="#C68642"/>
+          <!-- Hair -->
+          <path d="M68 74 C68 60 78 54 90 54 C102 54 112 60 112 74 C112 68 108 62 90 62 C72 62 68 68 68 74Z" fill="#2C1810"/>
+          <!-- White coat/cross -->
+          <rect x="75" y="95" width="30" height="40" rx="4" fill="white" fill-opacity=".15"/>
+          <rect x="87" y="100" width="6" height="20" rx="2" fill="white"/>
+          <rect x="81" y="108" width="18" height="6" rx="2" fill="white"/>
+          <!-- Tablet -->
+          <rect x="108" y="100" width="24" height="32" rx="4" fill="white" fill-opacity=".9"/>
+          <rect x="111" y="104" width="18" height="20" rx="2" fill="#E8F5EE"/>
+          <!-- Check badge -->
+          <circle cx="140" cy="55" r="22" fill="#1A6B42"/>
+          <path d="M130 55l7 7 13-13" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+
+        <div class="suc-h">Report Submitted!</div>
+        <div class="suc-p">Thank you for your contribution. Your report has been sent to the national surveillance system (DHIS2).</div>
+        <div class="suc-badge">Together we can end neglected tropical diseases in Nigeria.</div>
+
+        <div class="suc-actions">
+          <button class="btn btn-p" onclick="go('step1')">
+            <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            Report Another Case
+          </button>
+          <button class="btn-suc-sec" onclick="go('reports')">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            View My Reports
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('home')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        Home
+      </button>
+      <button class="bnav-i on" onclick="go('reports')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Reports
+      </button>
+      <button class="bnav-i" onclick="go('map')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
+        Map
+      </button>
+      <button class="bnav-i" onclick="go('more')">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        More
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════ MY REPORTS ═══════════ -->
+  <div id="s-reports" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">My Reports</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="stats-row" style="flex-shrink:0;">
+      <div class="stat-tile"><div class="stat-n">47</div><div class="stat-l">Total</div></div>
+      <div class="stat-tile"><div class="stat-n">12</div><div class="stat-l">This month</div></div>
+      <div class="stat-tile"><div class="stat-n">39</div><div class="stat-l">Verified</div></div>
+    </div>
+    <div class="chip-row">
+      <button class="chip on">All</button>
+      <button class="chip">Submitted</button>
+      <button class="chip">Pending</button>
+      <button class="chip">Verified</button>
+    </div>
+    <div class="scroll">
+      <div class="report-card" onclick="go('report-detail')">
+        <div class="rcard-ico" style="background:#DBEAFE;">🥾</div>
+        <div class="rcard-body">
+          <div class="rcard-top">
+            <div class="rcard-name">Female, 24 yrs • Gwale</div>
+            <div class="rcard-date">Today, 9:14</div>
+          </div>
+          <div class="rcard-sub">Lymphatic Filariasis</div>
+          <div class="rcard-foot"><span class="badge badge-blue">✓ Verified</span></div>
+        </div>
+      </div>
+      <div class="report-card" onclick="go('report-detail')">
+        <div class="rcard-ico" style="background:#D1FAE5;">🪱</div>
+        <div class="rcard-body">
+          <div class="rcard-top">
+            <div class="rcard-name">Male, 8 yrs • Nassarawa</div>
+            <div class="rcard-date">Yesterday</div>
+          </div>
+          <div class="rcard-sub">Soil-transmitted helminths</div>
+          <div class="rcard-foot"><span class="badge badge-green">✓ Verified</span></div>
+        </div>
+      </div>
+      <div class="report-card" onclick="go('report-detail')">
+        <div class="rcard-ico" style="background:#FFE4E6;">🩸</div>
+        <div class="rcard-body">
+          <div class="rcard-top">
+            <div class="rcard-name">Female, 31 yrs • Gwale</div>
+            <div class="rcard-date">Sep 14</div>
+          </div>
+          <div class="rcard-sub">Schistosomiasis</div>
+          <div class="rcard-foot"><span class="badge badge-orange">⏳ Pending</span></div>
+        </div>
+      </div>
+      <div class="report-card" onclick="go('report-detail')">
+        <div class="rcard-ico" style="background:#EDE9FE;">🫦</div>
+        <div class="rcard-body">
+          <div class="rcard-top">
+            <div class="rcard-name">Male, 45 yrs • Kano Municipal</div>
+            <div class="rcard-date">Sep 12</div>
+          </div>
+          <div class="rcard-sub">Trachoma</div>
+          <div class="rcard-foot"><span class="badge badge-blue">✓ Verified</span></div>
+        </div>
+      </div>
+      <div class="report-card" onclick="go('report-detail')">
+        <div class="rcard-ico" style="background:#FEF3C7;">👁️</div>
+        <div class="rcard-body">
+          <div class="rcard-top">
+            <div class="rcard-name">Female, 19 yrs • Gwale</div>
+            <div class="rcard-date">Sep 10</div>
+          </div>
+          <div class="rcard-sub">Onchocerciasis</div>
+          <div class="rcard-foot"><span class="badge badge-gray">Submitted</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      <button class="bnav-i on" onclick="go('reports')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('map')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>Map</button>
+      <button class="bnav-i" onclick="go('more')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>More</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ REPORT DETAIL ═══════════ -->
+  <div id="s-report-detail" class="scr">
+    <div class="detail-hero">
+      <div class="fbar">
+        <button class="back-btn" onclick="go('reports')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <div class="ftitle">Report Detail</div>
+        <div class="fbar-ph"></div>
+      </div>
+      <div class="dref">REF #NTD-KN-2024-0047</div>
+      <div class="dname">Female, 24 yrs</div>
+      <div class="dsub" style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+        <span style="background:rgba(255,255,255,.15);border-radius:999px;padding:3px 10px;font-size:11px;font-weight:600;color:white;">✓ Verified</span>
+        <span style="color:rgba(255,255,255,.65);font-size:12px;">Submitted Today, 9:14 AM</span>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="dblock">
+        <div class="dblock-ttl">Person Information</div>
+        <div class="drow"><span class="dkey">Age</span><span class="dval">24 years</span></div>
+        <div class="drow"><span class="dkey">Sex</span><span class="dval">Female</span></div>
+        <div class="drow"><span class="dkey">State</span><span class="dval">Kano</span></div>
+        <div class="drow"><span class="dkey">LGA</span><span class="dval">Kano Municipal</span></div>
+        <div class="drow"><span class="dkey">Community</span><span class="dval">Gwale Central</span></div>
+      </div>
+      <div class="dblock">
+        <div class="dblock-ttl">Condition</div>
+        <div class="drow"><span class="dkey">Disease</span><span class="dval">🥾 Lymphatic Filariasis</span></div>
+        <div class="drow"><span class="dkey">Symptoms</span><span class="dval">Swelling of both legs for 2 months</span></div>
+      </div>
+      <div class="dblock">
+        <div class="dblock-ttl">Social &amp; Economic</div>
+        <div class="drow"><span class="dkey">Employment</span><span class="dval">Not employed</span></div>
+        <div class="drow"><span class="dkey">Income source</span><span class="dval">Supported by family</span></div>
+        <div class="drow"><span class="dkey">Marital status</span><span class="dval">Single</span></div>
+      </div>
+      <div class="dblock">
+        <div class="dblock-ttl">Mental Health &amp; Stigma</div>
+        <div class="drow"><span class="dkey">Mental health</span><span class="dval">Signs of stress / anxiety</span></div>
+        <div class="drow"><span class="dkey">Stigma</span><span class="dval">Social exclusion, Verbal abuse</span></div>
+      </div>
+      <div class="d-actions">
+        <button class="d-action-btn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+          Share
+        </button>
+        <button class="d-action-btn">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════ COMMODITIES ═══════════ -->
+  <div id="s-commodities" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Report Commodities</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="scroll">
+      <div class="fbody">
+        <div class="sh">Select Commodity Type</div>
+        <div class="ss">Tap all commodities you are reporting for this distribution cycle.</div>
+      </div>
+      <div class="comm-grid">
+        <div class="comm-card on" onclick="this.classList.toggle('on')">
+          <div class="comm-ico">💊</div>
+          <div class="comm-name">Ivermectin</div>
+          <div class="cchk2"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>
+        <div class="comm-card on" onclick="this.classList.toggle('on')">
+          <div class="comm-ico">💉</div>
+          <div class="comm-name">Albendazole</div>
+          <div class="cchk2"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>
+        <div class="comm-card" onclick="this.classList.toggle('on')">
+          <div class="comm-ico">🧪</div>
+          <div class="comm-name">Praziquantel</div>
+          <div class="cchk2"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>
+        <div class="comm-card" onclick="this.classList.toggle('on')">
+          <div class="comm-ico">🫙</div>
+          <div class="comm-name">Azithromycin</div>
+          <div class="cchk2"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>
+        <div class="comm-card" onclick="this.classList.toggle('on')">
+          <div class="comm-ico">🔬</div>
+          <div class="comm-name">Test Kits</div>
+          <div class="cchk2"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>
+        <div class="comm-card" onclick="this.classList.toggle('on')">
+          <div class="comm-ico">🧤</div>
+          <div class="comm-name">PPE</div>
+          <div class="cchk2"><svg width="10" height="10" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg></div>
+        </div>
+      </div>
+      <div class="fbody" style="padding-top:4px;">
+        <div class="fdivlbl">Ivermectin</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div class="fld" style="margin:0;"><label class="flbl">Qty received</label><input class="finp" type="number" value="240"></div>
+          <div class="fld" style="margin:0;"><label class="flbl">Qty dispensed</label><input class="finp" type="number" value="186"></div>
+        </div>
+        <div class="fld"><label class="flbl">Expiry date</label><input class="finp" type="date" value="2025-06-30"></div>
+        <div class="fdivlbl">Albendazole</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div class="fld" style="margin:0;"><label class="flbl">Qty received</label><input class="finp" type="number" value="360"></div>
+          <div class="fld" style="margin:0;"><label class="flbl">Qty dispensed</label><input class="finp" type="number" value="294"></div>
+        </div>
+        <div class="fld"><label class="flbl">Expiry date</label><input class="finp" type="date" value="2025-09-15"></div>
+        <div class="fld"><label class="flbl">Notes (optional)</label><textarea class="ftxt" placeholder="Any issues, discrepancies or comments"></textarea></div>
+      </div>
+    </div>
+    <div class="ffooter">
+      <button class="btn btn-p">
+        <svg width="16" height="16" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Submit Commodity Report
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════ TRAINING LIST ═══════════ -->
+  <div id="s-training" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Training &amp; Guides</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="train-search" style="padding-top:12px;flex-shrink:0;">
+      <span class="sico2"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
+      <input placeholder="Search modules…">
+    </div>
+    <div class="chip-row">
+      <button class="chip on">All</button>
+      <button class="chip">NTD Basics</button>
+      <button class="chip">Reporting</button>
+      <button class="chip">Prevention</button>
+    </div>
+    <div class="scroll">
+      <div class="train-card" onclick="go('training-detail')">
+        <div class="train-ico" style="background:#DBEAFE;">📘</div>
+        <div class="train-body">
+          <div class="train-title">Introduction to NTDs</div>
+          <div class="train-meta">15 min · NTD Basics</div>
+          <div class="train-progress"><div class="train-progress-bar" style="width:100%"></div></div>
+          <div style="font-size:10px;color:var(--g700);font-weight:600;margin-top:4px;">Completed</div>
+        </div>
+      </div>
+      <div class="train-card" onclick="go('training-detail')">
+        <div class="train-ico" style="background:#D1FAE5;">📗</div>
+        <div class="train-body">
+          <div class="train-title">Case Reporting Protocols</div>
+          <div class="train-meta">22 min · Reporting</div>
+          <div class="train-progress"><div class="train-progress-bar" style="width:68%"></div></div>
+          <div style="font-size:10px;color:var(--t2);margin-top:4px;">68% complete</div>
+        </div>
+      </div>
+      <div class="train-card" onclick="go('training-detail')">
+        <div class="train-ico" style="background:#FEF3C7;">📙</div>
+        <div class="train-body">
+          <div class="train-title">Community Sensitisation</div>
+          <div class="train-meta">18 min · Prevention</div>
+          <div class="train-progress"><div class="train-progress-bar" style="width:40%"></div></div>
+          <div style="font-size:10px;color:var(--t2);margin-top:4px;">40% complete</div>
+        </div>
+      </div>
+      <div class="train-card" onclick="go('training-detail')">
+        <div class="train-ico" style="background:#EDE9FE;">📕</div>
+        <div class="train-body">
+          <div class="train-title">Commodity Distribution Guide</div>
+          <div class="train-meta">12 min · Reporting</div>
+          <div class="train-progress"><div class="train-progress-bar" style="width:0%"></div></div>
+          <div style="font-size:10px;color:var(--t3);margin-top:4px;">Not started</div>
+        </div>
+      </div>
+      <div class="train-card" onclick="go('training-detail')">
+        <div class="train-ico" style="background:#FFE4E6;">📓</div>
+        <div class="train-body">
+          <div class="train-title">Stigma and Mental Health Basics</div>
+          <div class="train-meta">20 min · NTD Basics</div>
+          <div class="train-progress"><div class="train-progress-bar" style="width:0%"></div></div>
+          <div style="font-size:10px;color:var(--t3);margin-top:4px;">Not started</div>
+        </div>
+      </div>
+      <div class="train-card" onclick="go('training-detail')">
+        <div class="train-ico" style="background:#F0FFF4;">📒</div>
+        <div class="train-body">
+          <div class="train-title">WASH and NTD Prevention</div>
+          <div class="train-meta">16 min · Prevention</div>
+          <div class="train-progress"><div class="train-progress-bar" style="width:0%"></div></div>
+          <div style="font-size:10px;color:var(--t3);margin-top:4px;">Not started</div>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('reports')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('map')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>Map</button>
+      <button class="bnav-i" onclick="go('more')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>More</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ TRAINING DETAIL ═══════════ -->
+  <div id="s-training-detail" class="scr">
+    <div class="train-hero">
+      <div class="fbar">
+        <button class="back-btn" onclick="go('training')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+        <div class="ftitle">Case Reporting Protocols</div>
+        <div class="fbar-ph"></div>
+      </div>
+      <div class="train-cat">📗 Reporting · 22 min</div>
+      <div class="train-prog-hero">
+        <div class="train-prog-bg"><div class="train-prog-fill" style="width:68%"></div></div>
+        <div class="train-prog-txt">68% complete · 7 min remaining</div>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="content-block">
+        <div class="content-h">What is a Case Report?</div>
+        <div class="content-p">A case report is an official record of a person presenting with signs or symptoms of a Neglected Tropical Disease (NTD). As a Community Health Worker (CHW), you are the first point of contact and your report triggers the entire care pathway for the patient.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-h">When to Report</div>
+        <div class="content-p">You should submit a report whenever you observe or are informed of a person with suspected NTD symptoms. You do not need a confirmed diagnosis — suspected cases are just as important. Timely reporting enables early intervention and prevents complications.</div>
+      </div>
+      <div class="content-block">
+        <div class="content-h">How to Complete Each Section</div>
+        <div class="content-p" style="margin-bottom:10px;"><strong>Person Information:</strong> Record the person's approximate age, sex, and precise location. A name is optional for privacy.</div>
+        <div class="content-p" style="margin-bottom:10px;"><strong>Condition:</strong> Select the symptom or disease that most closely matches what you observe. You may select more than one.</div>
+        <div class="content-p"><strong>Social &amp; Mental:</strong> These fields help the response team understand the person's context. Answer as accurately as possible.</div>
+      </div>
+      <div class="quiz-block">
+        <div class="quiz-q">Quick Check: When should you submit a case report?</div>
+        <label class="quiz-opt"><input type="radio" name="q1"> Only after a doctor confirms the diagnosis</label>
+        <label class="quiz-opt"><input type="radio" name="q1" checked> As soon as you observe suspected NTD symptoms</label>
+        <label class="quiz-opt"><input type="radio" name="q1"> Only for adults over 18</label>
+      </div>
+    </div>
+    <div class="ffooter">
+      <button class="btn btn-p" onclick="go('training')">
+        Mark as Complete
+        <svg width="16" height="16" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" viewBox="0 0 12 12"><path d="M2 6l3 3 5-5"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ═══════════ MAP ═══════════ -->
+  <div id="s-map" class="scr">
+    <div class="map-topbar">
+      <div class="map-ttl">Community Map</div>
+      <div class="map-period">Sep 2026</div>
+    </div>
+    <div class="map-legend">
+      <div class="leg-item"><div class="leg-dot" style="background:#3B82F6"></div>LF</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#EF4444"></div>Schistosomiasis</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#F59E0B"></div>Onchocerciasis</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#10B981"></div>STH</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#8B5CF6"></div>Trachoma</div>
+    </div>
+    <div class="map-wrap">
+      <svg viewBox="0 0 310 265" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;">
+        <!-- Nigeria outline (simplified) -->
+        <path d="M55,36 L65,28 L80,24 L100,22 L120,20 L140,18 L165,16 L190,18 L210,22 L225,28 L240,36 L250,46 L256,58 L258,70 L255,85 L252,100 L256,115 L260,130 L258,145 L252,158 L242,168 L228,176 L215,182 L200,190 L185,200 L170,210 L158,222 L148,232 L135,240 L120,244 L105,242 L92,236 L82,226 L74,214 L66,200 L58,186 L50,172 L44,158 L40,144 L38,130 L40,116 L42,102 L40,88 L40,74 L44,62 L50,50 Z" fill="var(--g50)" stroke="var(--g200)" stroke-width="1.5"/>
+        <!-- Case dots -->
+        <!-- Kano -->
+        <circle cx="136" cy="63" r="7" fill="#3B82F6" fill-opacity=".85"/>
+        <circle cx="136" cy="63" r="12" fill="#3B82F6" fill-opacity=".15"/>
+        <!-- Kaduna -->
+        <circle cx="110" cy="98" r="6" fill="#10B981" fill-opacity=".85"/>
+        <circle cx="110" cy="98" r="10" fill="#10B981" fill-opacity=".15"/>
+        <!-- Abuja -->
+        <circle cx="112" cy="136" r="5" fill="#8B5CF6" fill-opacity=".85"/>
+        <circle cx="112" cy="136" r="9" fill="#8B5CF6" fill-opacity=".15"/>
+        <!-- Lagos -->
+        <circle cx="60" cy="205" r="8" fill="#EF4444" fill-opacity=".85"/>
+        <circle cx="60" cy="205" r="13" fill="#EF4444" fill-opacity=".15"/>
+        <!-- Sokoto -->
+        <circle cx="59" cy="36" r="5" fill="#F59E0B" fill-opacity=".85"/>
+        <circle cx="59" cy="36" r="9" fill="#F59E0B" fill-opacity=".15"/>
+        <!-- Maiduguri -->
+        <circle cx="246" cy="68" r="6" fill="#EF4444" fill-opacity=".85"/>
+        <circle cx="246" cy="68" r="10" fill="#EF4444" fill-opacity=".15"/>
+        <!-- Enugu -->
+        <circle cx="158" cy="172" r="5" fill="#10B981" fill-opacity=".85"/>
+        <circle cx="158" cy="172" r="8" fill="#10B981" fill-opacity=".15"/>
+        <!-- Port Harcourt -->
+        <circle cx="110" cy="210" r="6" fill="#3B82F6" fill-opacity=".85"/>
+        <circle cx="110" cy="210" r="10" fill="#3B82F6" fill-opacity=".15"/>
+        <!-- Labels -->
+        <text x="145" y="62" font-size="9" fill="var(--t2)" font-family="Inter,sans-serif" font-weight="600">Kano</text>
+        <text x="70" y="204" font-size="9" fill="var(--t2)" font-family="Inter,sans-serif" font-weight="600">Lagos</text>
+        <text x="115" y="140" font-size="9" fill="var(--t2)" font-family="Inter,sans-serif" font-weight="600">Abuja</text>
+        <text x="253" y="67" font-size="9" fill="var(--t2)" font-family="Inter,sans-serif" font-weight="600">Maiduguri</text>
+      </svg>
+    </div>
+    <div class="map-stats">
+      <div class="map-stat"><div class="map-stat-n" style="color:#3B82F6">18</div><div class="map-stat-l">LF</div></div>
+      <div class="map-stat"><div class="map-stat-n" style="color:#EF4444">11</div><div class="map-stat-l">Schisto.</div></div>
+      <div class="map-stat"><div class="map-stat-n" style="color:#F59E0B">7</div><div class="map-stat-l">Oncho.</div></div>
+      <div class="map-stat"><div class="map-stat-n" style="color:#10B981">14</div><div class="map-stat-l">STH</div></div>
+      <div class="map-stat"><div class="map-stat-n" style="color:#8B5CF6">9</div><div class="map-stat-l">Trachoma</div></div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('reports')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Reports</button>
+      <button class="bnav-i on" onclick="go('map')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>Map</button>
+      <button class="bnav-i" onclick="go('more')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>More</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ MORE / PROFILE ═══════════ -->
+  <div id="s-more" class="scr">
+    <div class="profile-hero">
+      <div class="profile-avatar">👩🏾</div>
+      <div>
+        <div class="profile-name">Chioma Okafor</div>
+        <div class="profile-role">Community Health Worker</div>
+        <div class="profile-id">ID: CHW-KN-2847 · Kano State</div>
+      </div>
+    </div>
+    <div class="scroll">
+      <div class="menu-section">
+        <div class="menu-sec-ttl">Account</div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#EBF2FF;">👤</div>
+          <div class="menu-label">My Profile</div>
+          <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#FFF0F0;">🔔</div>
+          <div class="menu-label">Notifications</div>
+          <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#F0FFF4;">🔒</div>
+          <div class="menu-label">Change Password</div>
+          <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+      <div class="menu-section" style="margin-top:8px;">
+        <div class="menu-sec-ttl">Support</div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#FFFBEB;">❓</div>
+          <div class="menu-label">Help &amp; FAQ</div>
+          <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#EDE9FE;">📞</div>
+          <div class="menu-label">Contact Supervisor</div>
+          <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+      <div class="menu-section" style="margin-top:8px;">
+        <div class="menu-sec-ttl">App</div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#F0F9FF;">🌐</div>
+          <div class="menu-label">Language</div>
+          <svg class="menu-chevron" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+        <div class="menu-item">
+          <div class="menu-ico" style="background:#F9F5FF;">📱</div>
+          <div class="menu-label">App Version</div>
+          <div style="font-size:12px;color:var(--t3);margin-left:auto;">v2.4.1</div>
+        </div>
+      </div>
+      <button class="signout-btn" style="cursor:pointer;">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Sign Out
+      </button>
+      <div style="height:12px;"></div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('reports')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('map')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>Map</button>
+      <button class="bnav-i on" onclick="go('more')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>More</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ NOTIFICATIONS ═══════════ -->
+  <div id="s-notif" class="scr">
+    <div class="fbar">
+      <button class="back-btn" onclick="go('home')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div class="ftitle">Notifications</div>
+      <div class="fbar-ph"></div>
+    </div>
+    <div class="chip-row">
+      <button class="chip on">All</button>
+      <button class="chip">Reports</button>
+      <button class="chip">Alerts</button>
+      <button class="chip">Training</button>
+    </div>
+    <div class="scroll">
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-ico2" style="background:#DBEAFE;">✅</div>
+        <div class="notif-body">
+          <div class="notif-title">Report Verified</div>
+          <div class="notif-sub">Your LF report for Female, 24 yrs in Gwale has been verified by the state team.</div>
+          <div class="notif-time">Today, 11:30 AM</div>
+        </div>
+      </div>
+      <div class="notif-item unread">
+        <div class="notif-dot"></div>
+        <div class="notif-ico2" style="background:#FEF3C7;">⚠️</div>
+        <div class="notif-body">
+          <div class="notif-title">Outbreak Alert — Kano LGA</div>
+          <div class="notif-sub">Elevated STH cases detected in Kano Municipal. Increase surveillance and report immediately.</div>
+          <div class="notif-time">Today, 8:02 AM</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot read"></div>
+        <div class="notif-ico2" style="background:#D1FAE5;">📗</div>
+        <div class="notif-body">
+          <div class="notif-title">New Training Available</div>
+          <div class="notif-sub">"WASH and NTD Prevention" is now available. Earn your badge by completing it this week.</div>
+          <div class="notif-time">Yesterday, 3:15 PM</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot read"></div>
+        <div class="notif-ico2" style="background:#EDE9FE;">📦</div>
+        <div class="notif-body">
+          <div class="notif-title">Commodity Stock Low</div>
+          <div class="notif-sub">Albendazole stock in your ward is below minimum threshold. Submit a commodity report.</div>
+          <div class="notif-time">Sep 14, 10:45 AM</div>
+        </div>
+      </div>
+      <div class="notif-item">
+        <div class="notif-dot read"></div>
+        <div class="notif-ico2" style="background:#FFE4E6;">📋</div>
+        <div class="notif-body">
+          <div class="notif-title">Report Pending Review</div>
+          <div class="notif-sub">Your Schistosomiasis report submitted Sep 14 is awaiting review from the LGA coordinator.</div>
+          <div class="notif-time">Sep 14, 9:00 AM</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aow-foot">Aow</div>
+</div>
+
+<script>
+function go(id) {
+  document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
+  const el = document.getElementById('s-' + id);
+  if (el) {
+    el.classList.add('on');
+    el.querySelector('.scroll')?.scrollTo(0, 0);
+  }
+}
+
+function toggleSym(row) {
+  row.classList.toggle('chk');
+}
+
+function toggleCopt(el) {
+  el.classList.toggle('chk');
+}
+
+document.querySelectorAll('.chip-row').forEach(row => {
+  row.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      row.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+      chip.classList.add('on');
+    });
+  });
+});
+</script>
