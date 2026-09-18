@@ -648,10 +648,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       <div class="fbody">
         <div class="fld">
           <label class="flbl">Sample ID <span class="req">*</span></label>
-          <div style="position:relative;">
-            <input id="sid-dist-sample" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:var(--g700);">
-            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
-          </div>
+          <input id="sid-dist-sample" class="finp" placeholder="e.g. NTDs-KN-2609-021" style="font-family:monospace;font-size:13px;letter-spacing:.03em;">
+          <div style="font-size:10px;color:var(--t2);margin-top:4px;">Enter the ID on the sample received from the community</div>
         </div>
         <div class="fld"><label class="flbl">Patient Name <span class="req">*</span></label><input class="finp" placeholder="Full name"></div>
         <div class="fld"><label class="flbl">Age &amp; Sex <span class="req">*</span></label><div style="display:flex;gap:10px;"><input class="finp" placeholder="Age" style="width:90px;flex-shrink:0;"><select class="finp"><option>Male</option><option>Female</option></select></div></div>
@@ -717,10 +715,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       <div class="fbody" style="padding-top:12px;">
         <div class="fld">
           <label class="flbl">Sample ID <span class="req">*</span></label>
-          <div style="position:relative;">
-            <input id="sid-dist-result" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:#1D4ED8;">
-            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
-          </div>
+          <input id="sid-dist-result" class="finp" placeholder="e.g. NTDs-KN-2609-021" style="font-family:monospace;font-size:13px;letter-spacing:.03em;">
+          <div style="font-size:10px;color:var(--t2);margin-top:4px;">Enter the ID from the registered sample</div>
         </div>
         <div class="fld"><label class="flbl">Test Performed <span class="req">*</span></label>
           <select class="finp"><option>RDT (Rapid Diagnostic Test)</option><option>Microscopy — Blood film</option><option>Microscopy — Stool</option><option>Urine filtration</option></select>
@@ -752,10 +748,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         </div>
         <div class="fld">
           <label class="flbl">Sample ID <span class="req">*</span></label>
-          <div style="position:relative;">
-            <input id="sid-dist-refer" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:#1D4ED8;">
-            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
-          </div>
+          <input id="sid-dist-refer" class="finp" placeholder="e.g. NTDs-KN-2609-021" style="font-family:monospace;font-size:13px;letter-spacing:.03em;">
+          <div style="font-size:10px;color:var(--t2);margin-top:4px;">Enter the ID from the sample being referred</div>
         </div>
         <div class="fld"><label class="flbl">Disease / Pathogen <span class="req">*</span></label>
           <select class="finp">
@@ -2381,9 +2375,6 @@ function go(id) {
     el.querySelector('.scroll')?.scrollTo(0, 0);
   }
   if (id === 'step1') fillSampleId('sid-chw');
-  if (id === 'dist-sample') fillSampleId('sid-dist-sample');
-  if (id === 'dist-results') fillSampleId('sid-dist-result');
-  if (id === 'dist-refer') fillSampleId('sid-dist-refer');
 }
 
 function toggleSym(row) {
@@ -2542,8 +2533,8 @@ function renderBarChart(containerId, values, months, color) {
   el.innerHTML = svg;
 }
 
-// Pre-fill sample IDs on any screen already visible at load
-['sid-dist-sample','sid-dist-result','sid-dist-refer','sid-chw'].forEach(id => fillSampleId(id));
+// Pre-fill CHW sample ID if step1 is already active at load
+fillSampleId('sid-chw');
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
 renderBarChart('chart-chw', [8,11,9,14,12,15,18,16,12], MONTHS, '#1A6B42');
