@@ -1144,6 +1144,14 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="scroll">
       <div class="fbody">
+        <div class="fld" style="margin-bottom:18px;">
+          <label class="flbl">Sample ID <span class="req">*</span></label>
+          <div style="position:relative;">
+            <input id="sid-chw" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.04em;color:var(--g700);">
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;background:var(--bg);padding-left:4px;">Auto</span>
+          </div>
+          <div style="font-size:10px;color:var(--t2);margin-top:4px;">Generated automatically for this report</div>
+        </div>
         <div class="sh">Person Information</div>
         <div class="ss">Tell us about the person you are reporting.</div>
         <div class="fld">
@@ -1254,13 +1262,6 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div style="margin-top:16px;">
           <label class="flbl">Additional symptoms (optional)</label>
           <textarea class="ftxt" placeholder="E.g. fever, itching, skin rash, duration, etc."></textarea>
-        </div>
-        <div style="margin-top:16px;">
-          <label class="flbl">Sample ID <span class="req">*</span></label>
-          <div style="position:relative;">
-            <input id="sid-chw" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:var(--g700);">
-            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
-          </div>
         </div>
         <div style="margin-top:16px;">
           <label class="flbl">Sample type collected (select all that apply)</label>
@@ -2379,7 +2380,7 @@ function go(id) {
     el.classList.add('on');
     el.querySelector('.scroll')?.scrollTo(0, 0);
   }
-  if (id === 'step2') fillSampleId('sid-chw');
+  if (id === 'step1') fillSampleId('sid-chw');
   if (id === 'dist-sample') fillSampleId('sid-dist-sample');
   if (id === 'dist-results') fillSampleId('sid-dist-result');
   if (id === 'dist-refer') fillSampleId('sid-dist-refer');
