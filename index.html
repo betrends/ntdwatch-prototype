@@ -340,6 +340,26 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
 .quiz-opt{display:flex;align-items:center;gap:10px;padding:11px 14px;border-top:1px solid var(--bd);cursor:pointer;font-size:13px;}
 .quiz-opt:hover{background:var(--g50);}
 .quiz-opt input[type=radio]{accent-color:var(--g700);}
+/* charts */
+.chart-card{padding:0 22px 14px;}
+.chart-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.chart-title{font-size:13px;font-weight:700;}
+.chart-subtitle{font-size:10px;color:var(--t2);margin-top:1px;}
+.chart-actions{display:flex;gap:6px;}
+.chart-btn{display:flex;align-items:center;gap:4px;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:600;cursor:pointer;font-family:inherit;border:1.5px solid var(--bd);background:var(--sur);color:var(--t1);}
+.chart-btn.primary{background:var(--g700);color:white;border-color:var(--g700);}
+.chart-btn.blue{background:#1D4ED8;color:white;border-color:#1D4ED8;}
+.chart-btn.purple{background:#7C3AED;color:white;border-color:#7C3AED;}
+.chart-box{background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:12px 8px 6px;overflow:hidden;}
+/* sample type */
+.samp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
+.samp-btn{border:1.5px solid var(--bd);border-radius:10px;padding:9px 6px;font-size:11px;font-weight:600;cursor:pointer;background:var(--sur);color:var(--t1);font-family:inherit;text-align:center;transition:all .15s;line-height:1.3;}
+.samp-btn.on{border-color:var(--g700);background:var(--g50);color:var(--g700);}
+/* toast */
+.toast{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:8px 16px;border-radius:10px;font-size:12px;font-weight:500;opacity:0;transition:opacity .2s;pointer-events:none;z-index:999;white-space:nowrap;}
+.toast.show{opacity:1;}
+/* print */
+@media print{.bnav,.fbar,.ffooter,.splash,.chip-row,.chart-actions{display:none!important;}.phone{box-shadow:none;border-radius:0;width:100%;min-height:auto;}.scr:not(.on){display:none!important;}}
 </style>
 
 <div class="phone">
@@ -476,6 +496,16 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div class="lab-stat"><div class="lab-stat-n" style="color:#D97706;">16</div><div class="lab-stat-l">Pending results</div></div>
         <div class="lab-stat"><div class="lab-stat-n" style="color:#7C3AED;">8</div><div class="lab-stat-l">Referred to ref lab</div></div>
       </div>
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div><div class="chart-title">Samples per Month</div><div class="chart-subtitle">Samples received · Jan–Sep 2026</div></div>
+          <div class="chart-actions">
+            <button class="chart-btn" onclick="shareReport()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Share</button>
+            <button class="chart-btn blue" onclick="downloadReport('dist')"><svg width="13" height="13" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button>
+          </div>
+        </div>
+        <div class="chart-box"><div id="chart-dist"></div></div>
+      </div>
       <div style="padding:4px 22px 10px;"><div style="font-size:13px;font-weight:700;">Quick Actions</div></div>
       <div class="lab-quick-actions">
         <button class="lab-qa" style="background:#1D4ED8;border-color:#1D4ED8;" onclick="go('dist-sample')" type="button"><div class="lab-qa-ico">🧪</div><div class="lab-qa-n" style="color:white;">Register Sample</div><div class="lab-qa-s" style="color:rgba(255,255,255,.7);">Log a new incoming sample</div></button>
@@ -547,6 +577,16 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div class="lab-stat"><div class="lab-stat-n" style="color:var(--g700);">211</div><div class="lab-stat-l">Results validated (Sep)</div></div>
         <div class="lab-stat"><div class="lab-stat-n" style="color:#2563EB;">96%</div><div class="lab-stat-l">QA pass rate</div></div>
         <div class="lab-stat"><div class="lab-stat-n" style="color:#D97706;">14</div><div class="lab-stat-l">Pending DHIS2 upload</div></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div><div class="chart-title">PCR Tests per Month</div><div class="chart-subtitle">Tests run &amp; validated · Jan–Sep 2026</div></div>
+          <div class="chart-actions">
+            <button class="chart-btn" onclick="shareReport()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Share</button>
+            <button class="chart-btn purple" onclick="downloadReport('ref')"><svg width="13" height="13" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button>
+          </div>
+        </div>
+        <div class="chart-box"><div id="chart-ref"></div></div>
       </div>
       <div style="padding:4px 22px 10px;"><div style="font-size:13px;font-weight:700;">Quick Actions</div></div>
       <div class="lab-quick-actions">
@@ -1015,6 +1055,17 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <svg width="20" height="20" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" style="margin-left:auto;opacity:.6"><path d="M9 18l6-6-6-6"/></svg>
       </button>
 
+      <div class="chart-card">
+        <div class="chart-hdr">
+          <div><div class="chart-title">Monthly Cases</div><div class="chart-subtitle">Cases reported · Jan–Sep 2026</div></div>
+          <div class="chart-actions">
+            <button class="chart-btn" onclick="shareReport()"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>Share</button>
+            <button class="chart-btn primary" onclick="downloadReport('chw')"><svg width="13" height="13" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download</button>
+          </div>
+        </div>
+        <div class="chart-box"><div id="chart-chw"></div></div>
+      </div>
+
       <div class="qgrid">
         <div class="qcard" onclick="go('reports')">
           <div class="qcard-ico" style="background:#EBF2FF;">📋</div>
@@ -1184,6 +1235,17 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div style="margin-top:16px;">
           <label class="flbl">Additional symptoms (optional)</label>
           <textarea class="ftxt" placeholder="E.g. fever, itching, skin rash, duration, etc."></textarea>
+        </div>
+        <div style="margin-top:16px;">
+          <label class="flbl">Sample type collected (select all that apply)</label>
+          <div class="samp-grid">
+            <button class="samp-btn" type="button" onclick="toggleSamp(this)">🩸<br>Blood</button>
+            <button class="samp-btn" type="button" onclick="toggleSamp(this)">💧<br>Urine</button>
+            <button class="samp-btn" type="button" onclick="toggleSamp(this)">💩<br>Stool</button>
+            <button class="samp-btn" type="button" onclick="toggleSamp(this)">🩹<br>Skin snip</button>
+            <button class="samp-btn" type="button" onclick="toggleSamp(this)">👁️<br>Eye swab</button>
+            <button class="samp-btn" type="button" onclick="toggleSamp(this)">🚫<br>None taken</button>
+          </div>
         </div>
         <div class="photo-section">
           <label class="photo-label">Photo evidence (optional)</label>
@@ -2228,6 +2290,7 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
   </div>
 
   <div class="aow-foot">Aow</div>
+  <div id="toast" class="toast"></div>
 </div>
 
 <script>
@@ -2323,4 +2386,81 @@ document.querySelectorAll('.chip-row').forEach(row => {
     });
   });
 });
+
+function toggleSamp(btn) { btn.classList.toggle('on'); }
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function shareReport() {
+  const url = 'https://betrends.github.io/ntdwatch-prototype';
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => showToast('Link copied to clipboard!')).catch(() => showToast('Link: ' + url));
+  } else {
+    showToast('Link: betrends.github.io/ntdwatch-prototype');
+  }
+}
+
+const REPORT_DATA = {
+  chw: {title:'NTDWatch — CHW Monthly Cases', headers:['Month','Cases Reported'], rows:[['Jan','8'],['Feb','11'],['Mar','9'],['Apr','14'],['May','12'],['Jun','15'],['Jul','18'],['Aug','16'],['Sep','12']]},
+  dist: {title:'NTDWatch — District Lab Monthly Samples', headers:['Month','Samples Received'], rows:[['Jan','85'],['Feb','92'],['Mar','88'],['Apr','104'],['May','98'],['Jun','112'],['Jul','118'],['Aug','126'],['Sep','134']]},
+  ref: {title:'NTDWatch — Reference Lab Monthly PCR', headers:['Month','PCR Tests Run'], rows:[['Jan','142'],['Feb','156'],['Mar','138'],['Apr','168'],['May','175'],['Jun','189'],['Jul','198'],['Aug','207'],['Sep','211']]}
+};
+
+function downloadReport(type) {
+  const d = REPORT_DATA[type] || REPORT_DATA.chw;
+  const csv = [d.title, '', d.headers.join(','), ...d.rows.map(r => r.join(','))].join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'ntdwatch-' + type + '-report.csv'; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Report downloaded as CSV');
+}
+
+function renderBarChart(containerId, values, months, color) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const W = 300, H = 120, pl = 28, pr = 8, pt = 8, pb = 22;
+  const cw = W - pl - pr, ch = H - pt - pb;
+  const n = values.length;
+  const bw = Math.floor((cw - (n-1)*6) / n);
+  const max = Math.max(...values);
+  const yBase = pt + ch;
+  let svg = `<svg width="100%" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">`;
+  // grid lines
+  [0.25,0.5,0.75,1].forEach(f => {
+    const y = pt + ch - ch*f;
+    svg += `<line x1="${pl}" y1="${y}" x2="${W-pr}" y2="${y}" stroke="currentColor" opacity=".08" stroke-width="1"/>`;
+  });
+  // bars
+  values.forEach((v, i) => {
+    const bh = Math.max(3, Math.round((v/max)*ch));
+    const bx = pl + i*(bw+6);
+    const by = yBase - bh;
+    const op = i === n-1 ? '1' : '.7';
+    svg += `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="3" fill="${color}" opacity="${op}"/>`;
+    // value label on top bar (last + max only)
+    if (i === n-1 || v === max) {
+      svg += `<text x="${bx+bw/2}" y="${by-3}" font-size="8" font-weight="700" text-anchor="middle" fill="${color}">${v}</text>`;
+    }
+    // month label
+    svg += `<text x="${bx+bw/2}" y="${H-4}" font-size="7.5" text-anchor="middle" fill="currentColor" opacity=".55">${months[i]}</text>`;
+  });
+  // y-axis label (max)
+  svg += `<text x="${pl-3}" y="${pt+6}" font-size="7" text-anchor="end" fill="currentColor" opacity=".4">${max}</text>`;
+  svg += '</svg>';
+  el.innerHTML = svg;
+}
+
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
+renderBarChart('chart-chw', [8,11,9,14,12,15,18,16,12], MONTHS, '#1A6B42');
+renderBarChart('chart-dist', [85,92,88,104,98,112,118,126,134], MONTHS, '#1D4ED8');
+renderBarChart('chart-ref', [142,156,138,168,175,189,198,207,211], MONTHS, '#7C3AED');
 </script>
