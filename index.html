@@ -646,7 +646,13 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="scroll">
       <div class="fbody">
-        <div class="fld"><label class="flbl">Sample ID <span class="req">*</span></label><input class="finp" placeholder="Auto-generated e.g. NTD-KN-048" readonly style="background:var(--bg);"></div>
+        <div class="fld">
+          <label class="flbl">Sample ID <span class="req">*</span></label>
+          <div style="position:relative;">
+            <input id="sid-dist-sample" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:var(--g700);">
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
+          </div>
+        </div>
         <div class="fld"><label class="flbl">Patient Name <span class="req">*</span></label><input class="finp" placeholder="Full name"></div>
         <div class="fld"><label class="flbl">Age &amp; Sex <span class="req">*</span></label><div style="display:flex;gap:10px;"><input class="finp" placeholder="Age" style="width:90px;flex-shrink:0;"><select class="finp"><option>Male</option><option>Female</option></select></div></div>
         <div class="fld"><label class="flbl">LGA / Ward <span class="req">*</span></label><input class="finp" placeholder="e.g. Gwale, Kano"></div>
@@ -709,7 +715,13 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       </div>
       <div style="padding:14px 22px 0;font-size:13px;font-weight:700;">Enter Result</div>
       <div class="fbody" style="padding-top:12px;">
-        <div class="fld"><label class="flbl">Sample ID <span class="req">*</span></label><input class="finp" placeholder="e.g. NTD-KN-047"></div>
+        <div class="fld">
+          <label class="flbl">Sample ID <span class="req">*</span></label>
+          <div style="position:relative;">
+            <input id="sid-dist-result" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:#1D4ED8;">
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
+          </div>
+        </div>
         <div class="fld"><label class="flbl">Test Performed <span class="req">*</span></label>
           <select class="finp"><option>RDT (Rapid Diagnostic Test)</option><option>Microscopy — Blood film</option><option>Microscopy — Stool</option><option>Urine filtration</option></select>
         </div>
@@ -738,7 +750,13 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
           <div style="font-size:12px;font-weight:700;color:#1D4ED8;margin-bottom:4px;">ℹ️ PCR Referral</div>
           <div style="font-size:11px;color:#1D4ED8;line-height:1.5;">Samples sent to the National NTD Reference Centre in Lagos for molecular confirmation. Typical turnaround: 3–5 working days.</div>
         </div>
-        <div class="fld"><label class="flbl">Sample ID <span class="req">*</span></label><input class="finp" placeholder="e.g. NTD-KN-045"></div>
+        <div class="fld">
+          <label class="flbl">Sample ID <span class="req">*</span></label>
+          <div style="position:relative;">
+            <input id="sid-dist-refer" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:#1D4ED8;">
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
+          </div>
+        </div>
         <div class="fld"><label class="flbl">Disease / Pathogen <span class="req">*</span></label>
           <select class="finp">
             <option value="">Select disease</option>
@@ -1236,6 +1254,13 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
         <div style="margin-top:16px;">
           <label class="flbl">Additional symptoms (optional)</label>
           <textarea class="ftxt" placeholder="E.g. fever, itching, skin rash, duration, etc."></textarea>
+        </div>
+        <div style="margin-top:16px;">
+          <label class="flbl">Sample ID <span class="req">*</span></label>
+          <div style="position:relative;">
+            <input id="sid-chw" class="finp" readonly style="background:var(--bg);font-family:monospace;font-size:13px;font-weight:700;letter-spacing:.03em;color:var(--g700);">
+            <span style="position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:10px;color:var(--t2);font-weight:600;">Auto</span>
+          </div>
         </div>
         <div style="margin-top:16px;">
           <label class="flbl">Sample type collected (select all that apply)</label>
@@ -2327,6 +2352,26 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
 </div>
 
 <script>
+let _sidSeq = Math.floor(Math.random() * 40) + 20;
+const STATE_CODES = {'Kano':'KN','Lagos':'LG','Abuja':'AB','Kaduna':'KD','Sokoto':'SK','Rivers':'RV','Enugu':'EN','Maiduguri':'MA'};
+
+function genSampleId(stateCode) {
+  const now = new Date();
+  const yy = String(now.getFullYear()).slice(-2);
+  const mm = String(now.getMonth() + 1).padStart(2, '0');
+  _sidSeq++;
+  return `NTDs-${stateCode || 'KN'}-${yy}${mm}-${String(_sidSeq).padStart(3,'0')}`;
+}
+
+function fillSampleId(inputId, color) {
+  const inp = document.getElementById(inputId);
+  if (inp && !inp.value) {
+    const stateSel = document.querySelector('#s-step1 select.fsel');
+    const code = STATE_CODES[stateSel?.value] || 'KN';
+    inp.value = genSampleId(code);
+  }
+}
+
 function go(id) {
   document.querySelectorAll('.scr').forEach(s => s.classList.remove('on'));
   const el = document.getElementById('s-' + id);
@@ -2334,6 +2379,10 @@ function go(id) {
     el.classList.add('on');
     el.querySelector('.scroll')?.scrollTo(0, 0);
   }
+  if (id === 'step2') fillSampleId('sid-chw');
+  if (id === 'dist-sample') fillSampleId('sid-dist-sample');
+  if (id === 'dist-results') fillSampleId('sid-dist-result');
+  if (id === 'dist-refer') fillSampleId('sid-dist-refer');
 }
 
 function toggleSym(row) {
@@ -2491,6 +2540,9 @@ function renderBarChart(containerId, values, months, color) {
   svg += '</svg>';
   el.innerHTML = svg;
 }
+
+// Pre-fill sample IDs on any screen already visible at load
+['sid-dist-sample','sid-dist-result','sid-dist-refer','sid-chw'].forEach(id => fillSampleId(id));
 
 const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
 renderBarChart('chart-chw', [8,11,9,14,12,15,18,16,12], MONTHS, '#1A6B42');
