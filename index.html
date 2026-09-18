@@ -550,8 +550,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="bnav">
       <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i" onclick="go('dist-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i" onclick="go('dist-results')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Results</button>
+      <button class="bnav-i" onclick="go('dist-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('dist-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -632,8 +632,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="bnav">
       <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i" onclick="go('ref-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i" onclick="go('ref-rlist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i" onclick="go('ref-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('ref-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -690,70 +690,6 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Enter Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">RDT &amp; Microscopy findings</div></div>
     </div>
     <div class="scroll">
-      <!-- TAT + Gender analytics -->
-      <div style="padding:14px 16px 0;">
-        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Lab TAT Statistics · Sep 2026</div>
-        <!-- TAT rows -->
-        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:12px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Collection → Receipt</span>
-            <span style="background:#7C3AED;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">13 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Receipt → Tested</span>
-            <span style="background:#1D4ED8;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">1.3 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Tested → Result Approved</span>
-            <span style="background:#F59E0B;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">2.1 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Result Approved → Printed</span>
-            <span style="background:#10B981;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">0 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
-            <span style="font-size:12px;color:var(--t1);">Receipt → Result Printed</span>
-            <span style="background:#EF4444;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">3.4 days</span>
-          </div>
-        </div>
-        <!-- Charts row -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-          <!-- TAT Pie -->
-          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
-            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Turn Around Time</div>
-            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <!-- Pie: Collection-Receipt 60.7% → ~218°, Collection-Result 23.4% → ~84°, Processing-Result 9.8% → ~35°, Receipt-Processing 6.1% → ~22° -->
-              <!-- Using path arcs, center 60,58 r=38 -->
-              <path d="M60,58 L60,20 A38,38 0 1,1 22.4,73.5 Z" fill="#1D4ED8"/>
-              <path d="M60,58 L22.4,73.5 A38,38 0 0,1 40.1,24.5 Z" fill="#7C3AED"/>
-              <path d="M60,58 L40.1,24.5 A38,38 0 0,1 57.6,20.1 Z" fill="#10B981"/>
-              <path d="M60,58 L57.6,20.1 A38,38 0 0,1 60,20 Z" fill="#F59E0B"/>
-              <!-- center hole -->
-              <circle cx="60" cy="58" r="20" fill="var(--sur)"/>
-              <!-- legend -->
-              <circle cx="8" cy="82" r="4" fill="#1D4ED8"/><text x="14" y="85" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Coll→Rcpt 60.7%</text>
-              <circle cx="8" cy="92" r="4" fill="#7C3AED"/><text x="14" y="95" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Coll→Print 23.4%</text>
-              <circle cx="8" cy="102" r="4" fill="#10B981"/><text x="14" y="105" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Proc→Print 9.8%</text>
-              <circle cx="68" cy="82" r="4" fill="#F59E0B"/><text x="74" y="85" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Rcpt→Proc 6.1%</text>
-            </svg>
-          </div>
-          <!-- Gender Pie -->
-          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
-            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Gender Distribution</div>
-            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <!-- Female 68.5% ~246°, Male 31.5% ~113° -->
-              <path d="M60,54 L60,16 A38,38 0 1,1 26.1,35 Z" fill="#3B82F6"/>
-              <path d="M60,54 L26.1,35 A38,38 0 0,1 60,16 Z" fill="#374151"/>
-              <circle cx="60" cy="54" r="20" fill="var(--sur)"/>
-              <text x="60" y="51" font-size="11" font-weight="800" text-anchor="middle" fill="var(--t1)" font-family="Inter,sans-serif">68.5%</text>
-              <text x="60" y="62" font-size="7" text-anchor="middle" fill="var(--t2)" font-family="Inter,sans-serif">Female</text>
-              <!-- legend -->
-              <circle cx="14" cy="90" r="5" fill="#3B82F6"/><text x="21" y="94" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Female: 68.5%</text>
-              <circle cx="14" cy="104" r="5" fill="#374151"/><text x="21" y="108" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Male: 31.5%</text>
-            </svg>
-          </div>
-        </div>
-      </div>
       <div style="padding:4px 22px 4px;font-size:13px;font-weight:700;">Pending Results (16)</div>
       <div class="lab-item" onclick="go('dist')">
         <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
@@ -937,60 +873,6 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
       <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Validate Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Confirm district lab findings</div></div>
     </div>
     <div class="scroll">
-      <!-- TAT + Gender analytics -->
-      <div style="padding:14px 16px 0;">
-        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Lab TAT Statistics · Sep 2026</div>
-        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:12px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Collection → Receipt</span>
-            <span style="background:#7C3AED;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">15 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Receipt → PCR Run</span>
-            <span style="background:#1D4ED8;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">2.1 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">PCR Run → Validated</span>
-            <span style="background:#F59E0B;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">1.8 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);">
-            <span style="font-size:12px;color:var(--t1);">Validated → DHIS2 Export</span>
-            <span style="background:#10B981;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">0.5 days</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;">
-            <span style="font-size:12px;color:var(--t1);">End-to-End TAT</span>
-            <span style="background:#EF4444;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">19.4 days</span>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
-          <!-- TAT Pie -->
-          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
-            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Turn Around Time</div>
-            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <path d="M60,58 L60,20 A38,38 0 1,1 26.4,70 Z" fill="#7C3AED"/>
-              <path d="M60,58 L26.4,70 A38,38 0 0,1 45.2,23.4 Z" fill="#1D4ED8"/>
-              <path d="M60,58 L45.2,23.4 A38,38 0 0,1 60,20 Z" fill="#F59E0B"/>
-              <circle cx="60" cy="58" r="20" fill="var(--sur)"/>
-              <circle cx="8" cy="82" r="4" fill="#7C3AED"/><text x="14" y="85" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Coll→Rcpt 57.8%</text>
-              <circle cx="8" cy="92" r="4" fill="#1D4ED8"/><text x="14" y="95" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Rcpt→PCR 32.4%</text>
-              <circle cx="8" cy="102" r="4" fill="#F59E0B"/><text x="14" y="105" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">PCR→Valid 9.8%</text>
-            </svg>
-          </div>
-          <!-- Gender Pie -->
-          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
-            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Gender Distribution</div>
-            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
-              <path d="M60,54 L60,16 A38,38 0 1,1 28.4,72.5 Z" fill="#7C3AED"/>
-              <path d="M60,54 L28.4,72.5 A38,38 0 0,1 60,16 Z" fill="#374151"/>
-              <circle cx="60" cy="54" r="20" fill="var(--sur)"/>
-              <text x="60" y="51" font-size="11" font-weight="800" text-anchor="middle" fill="var(--t1)" font-family="Inter,sans-serif">72.3%</text>
-              <text x="60" y="62" font-size="7" text-anchor="middle" fill="var(--t2)" font-family="Inter,sans-serif">Female</text>
-              <circle cx="14" cy="90" r="5" fill="#7C3AED"/><text x="21" y="94" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Female: 72.3%</text>
-              <circle cx="14" cy="104" r="5" fill="#374151"/><text x="21" y="108" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Male: 27.7%</text>
-            </svg>
-          </div>
-        </div>
-      </div>
       <div style="padding:12px 22px 4px;display:flex;justify-content:space-between;align-items:center;">
         <div style="font-size:13px;font-weight:700;">Awaiting Validation (6)</div>
         <button class="btn" style="font-size:11px;padding:4px 12px;background:#F5F3FF;color:#7C3AED;border:1px solid #DDD6FE;border-radius:8px;" type="button" onclick="go('ref')">Validate All</button>
@@ -2355,8 +2237,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="bnav">
       <button class="bnav-i" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i" onclick="go('dist-results')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>Results</button>
+      <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('dist-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -2405,8 +2287,8 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="bnav">
       <button class="bnav-i" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i" onclick="go('ref-rlist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('ref-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -2454,8 +2336,267 @@ body{font-family:'Inter',system-ui,sans-serif;font-size:14px;background:var(--bg
     </div>
     <div class="bnav">
       <button class="bnav-i" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
-      <button class="bnav-i" onclick="go('ref-slist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>Samples</button>
-      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-rlist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>PCR Results</button>
+      <button class="bnav-i" onclick="go('ref-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: SAMPLES & RESULTS (merged) ═══════════ -->
+  <div id="s-dist-sr" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Samples &amp; Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">District Lab · Sep 2026</div></div>
+    </div>
+    <div style="padding:10px 16px 0;flex-shrink:0;display:flex;gap:8px;">
+      <button class="chip on" id="sr-tab-s" type="button" onclick="switchSrTab('dist','s')">Samples (134)</button>
+      <button class="chip" id="sr-tab-r" type="button" onclick="switchSrTab('dist','r')">Pending Results (16)</button>
+    </div>
+    <div class="scroll">
+      <div id="sr-dist-s">
+        <div class="lab-item" onclick="go('dist-sample')">
+          <div class="lab-item-ico" style="background:#DBEAFE;">🧫</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-047 — LF (RDT)</div><div class="lab-item-sub">Female, 24 yrs · Gwale · Today · Registered</div></div>
+          <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Logged</span></div>
+        </div>
+        <div class="lab-item" onclick="go('dist-sample')">
+          <div class="lab-item-ico" style="background:#FEE2E2;">🩸</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-043 — LF (Blood film)</div><div class="lab-item-sub">Male, 38 yrs · Kano Municipal · Yesterday</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending</span></div>
+        </div>
+        <div class="lab-item" onclick="go('dist-sample')">
+          <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-041 — STH (Stool Micro.)</div><div class="lab-item-sub">Male, 6 yrs · Nassarawa · Sep 15</div></div>
+          <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">✓ Logged</span></div>
+        </div>
+        <div class="lab-item" onclick="go('dist-sample')">
+          <div class="lab-item-ico" style="background:#EDE9FE;">🫦</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-039 — Trachoma (Swab)</div><div class="lab-item-sub">Female, 12 yrs · Ungogo · Sep 14</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending</span></div>
+        </div>
+        <div style="padding:14px 22px;text-align:center;font-size:12px;color:var(--t2);">Showing 4 of 134 samples</div>
+      </div>
+      <div id="sr-dist-r" style="display:none;">
+        <div class="lab-item" onclick="go('dist-results')">
+          <div class="lab-item-ico" style="background:#DBEAFE;">🩸</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-047 — LF (RDT)</div><div class="lab-item-sub">Female, 24 yrs · Gwale · Today</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+        </div>
+        <div class="lab-item" onclick="go('dist-results')">
+          <div class="lab-item-ico" style="background:#FEE2E2;">🩸</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-043 — LF (RDT)</div><div class="lab-item-sub">Male, 38 yrs · Kano Municipal · Yesterday</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+        </div>
+        <div class="lab-item" onclick="go('dist-results')">
+          <div class="lab-item-ico" style="background:#D1FAE5;">🪱</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-041 — STH (Stool Micro.)</div><div class="lab-item-sub">Male, 6 yrs · Nassarawa · Sep 15</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+        </div>
+        <div class="lab-item" onclick="go('dist-results')">
+          <div class="lab-item-ico" style="background:#EDE9FE;">🫦</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">NTDs-KN-2609-039 — Trachoma (Clinical)</div><div class="lab-item-sub">Female, 12 yrs · Ungogo · Sep 14</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Enter</span></div>
+        </div>
+        <div style="padding:14px 22px;text-align:center;">
+          <button class="btn btn-p" style="background:#1D4ED8;font-size:12px;padding:8px 20px;" onclick="go('dist-results')">Open Results Entry Form</button>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('dist-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ DISTRICT LAB: REPORTS ═══════════ -->
+  <div id="s-dist-report" class="scr">
+    <div class="lab-hdr" style="background:#1D4ED8;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Reports</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">District Lab · September 2026</div></div>
+    </div>
+    <div class="scroll">
+      <div style="padding:14px 16px 0;">
+        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Lab TAT Statistics · Sep 2026</div>
+        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Collection → Receipt</span><span style="background:#7C3AED;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">13 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Receipt → Tested</span><span style="background:#1D4ED8;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">1.3 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Tested → Result Approved</span><span style="background:#F59E0B;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">2.1 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Result Approved → Printed</span><span style="background:#10B981;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">0 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;"><span style="font-size:12px;color:var(--t1);">Receipt → Result Printed</span><span style="background:#EF4444;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">3.4 days</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
+            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Turn Around Time</div>
+            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <path d="M60,58 L60,20 A38,38 0 1,1 22.4,73.5 Z" fill="#1D4ED8"/>
+              <path d="M60,58 L22.4,73.5 A38,38 0 0,1 40.1,24.5 Z" fill="#7C3AED"/>
+              <path d="M60,58 L40.1,24.5 A38,38 0 0,1 57.6,20.1 Z" fill="#10B981"/>
+              <path d="M60,58 L57.6,20.1 A38,38 0 0,1 60,20 Z" fill="#F59E0B"/>
+              <circle cx="60" cy="58" r="20" fill="var(--sur)"/>
+              <circle cx="8" cy="82" r="4" fill="#1D4ED8"/><text x="14" y="85" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Coll→Rcpt 60.7%</text>
+              <circle cx="8" cy="92" r="4" fill="#7C3AED"/><text x="14" y="95" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Coll→Print 23.4%</text>
+              <circle cx="8" cy="102" r="4" fill="#10B981"/><text x="14" y="105" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Proc→Print 9.8%</text>
+              <circle cx="68" cy="82" r="4" fill="#F59E0B"/><text x="74" y="85" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Rcpt→Proc 6.1%</text>
+            </svg>
+          </div>
+          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
+            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Gender Distribution</div>
+            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <path d="M60,54 L60,16 A38,38 0 1,1 26.1,35 Z" fill="#3B82F6"/>
+              <path d="M60,54 L26.1,35 A38,38 0 0,1 60,16 Z" fill="#374151"/>
+              <circle cx="60" cy="54" r="20" fill="var(--sur)"/>
+              <text x="60" y="51" font-size="11" font-weight="800" text-anchor="middle" fill="var(--t1)" font-family="Inter,sans-serif">68.5%</text>
+              <text x="60" y="62" font-size="7" text-anchor="middle" fill="var(--t2)" font-family="Inter,sans-serif">Female</text>
+              <circle cx="14" cy="90" r="5" fill="#3B82F6"/><text x="21" y="94" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Female: 68.5%</text>
+              <circle cx="14" cy="104" r="5" fill="#374151"/><text x="21" y="108" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Male: 31.5%</text>
+            </svg>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Monthly Samples</div>
+        <div class="chart-card" style="padding:0 0 14px;">
+          <div class="chart-hdr">
+            <div><div class="chart-title">Samples per Month</div><div class="chart-subtitle">Jan–Sep 2026 · District Lab</div></div>
+            <div class="chart-actions">
+              <button class="chart-btn" onclick="shareReport()"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>
+              <button class="chart-btn blue" onclick="downloadReport('dist')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button>
+            </div>
+          </div>
+          <div class="chart-box"><div id="chart-dist-rep"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('dist')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('dist-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i on" style="color:#1D4ED8;" onclick="go('dist-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: SAMPLES & RESULTS (merged) ═══════════ -->
+  <div id="s-ref-sr" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Samples &amp; Results</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Reference Lab · Sep 2026</div></div>
+    </div>
+    <div style="padding:10px 16px 0;flex-shrink:0;display:flex;gap:8px;">
+      <button class="chip on" id="rr-tab-s" type="button" onclick="switchSrTab('ref','s')">Samples (28)</button>
+      <button class="chip" id="rr-tab-r" type="button" onclick="switchSrTab('ref','r')">PCR Results (211)</button>
+    </div>
+    <div class="scroll">
+      <div id="sr-ref-s">
+        <div class="lab-item" onclick="go('ref-pcr')">
+          <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-089 — LF (Wuchereria bancrofti)</div><div class="lab-item-sub">From Kano Dist. Lab · Today · Urgent</div></div>
+          <div class="lab-item-right"><span style="background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
+        </div>
+        <div class="lab-item" onclick="go('ref-pcr')">
+          <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-088 — Trachoma (C. trachomatis)</div><div class="lab-item-sub">From Lagos Dist. Lab · Today · Urgent</div></div>
+          <div class="lab-item-right"><span style="background:#FEF2F2;color:#DC2626;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Urgent</span></div>
+        </div>
+        <div class="lab-item" onclick="go('ref-pcr')">
+          <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-087 — Onchocerciasis (O. volvulus)</div><div class="lab-item-sub">From Kaduna Dist. Lab · Yesterday</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
+        </div>
+        <div class="lab-item" onclick="go('ref-pcr')">
+          <div class="lab-item-ico" style="background:#EDE9FE;">🧬</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-085 — Schistosomiasis (S. haem.)</div><div class="lab-item-sub">From Ogun Dist. Lab · Sep 15</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Processing</span></div>
+        </div>
+        <div style="padding:14px 22px;text-align:center;font-size:12px;color:var(--t2);">Showing 4 of 28 samples</div>
+      </div>
+      <div id="sr-ref-r" style="display:none;">
+        <div class="lab-item" onclick="go('ref-validate')">
+          <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-086 — Schisto. PCR Confirmed</div><div class="lab-item-sub">Sokoto · Sep 15 · S. haematobium +ve</div></div>
+          <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Validated</span></div>
+        </div>
+        <div class="lab-item" onclick="go('ref-validate')">
+          <div class="lab-item-ico" style="background:#D1FAE5;">✅</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-083 — LF Negative (qPCR)</div><div class="lab-item-sub">Oyo · Sep 14 · Ct = 38.2</div></div>
+          <div class="lab-item-right"><span style="background:#E8F5EE;color:#1A6B42;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Validated</span></div>
+        </div>
+        <div class="lab-item" onclick="go('ref-validate')">
+          <div class="lab-item-ico" style="background:#FEE2E2;">🧬</div>
+          <div class="lab-item-body"><div class="lab-item-ttl">REF-082 — Trachoma Confirmed</div><div class="lab-item-sub">Lagos · Sep 13 · C. trachomatis +ve</div></div>
+          <div class="lab-item-right"><span style="background:#FFFBEB;color:#B45309;border-radius:999px;padding:2px 8px;font-size:10px;font-weight:600;">Pending upload</span></div>
+        </div>
+        <div style="padding:14px 22px;text-align:center;">
+          <button class="btn btn-p" style="background:#7C3AED;font-size:12px;padding:8px 20px;" onclick="go('ref-validate')">Open Validation Screen</button>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i" onclick="go('ref-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
+      <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
+    </div>
+  </div>
+
+  <!-- ═══════════ REF LAB: REPORTS ═══════════ -->
+  <div id="s-ref-report" class="scr">
+    <div class="lab-hdr" style="background:#7C3AED;">
+      <button class="back-btn" style="color:white;border-color:rgba(255,255,255,.3);" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button>
+      <div style="flex:1;"><div class="lab-hdr-name" style="color:white;">Reports</div><div class="lab-hdr-role" style="color:rgba(255,255,255,.7);">Reference Lab · September 2026</div></div>
+    </div>
+    <div class="scroll">
+      <div style="padding:14px 16px 0;">
+        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px;">Lab TAT Statistics · Sep 2026</div>
+        <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;overflow:hidden;margin-bottom:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Collection → Receipt</span><span style="background:#7C3AED;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">15 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Receipt → PCR Run</span><span style="background:#1D4ED8;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">2.1 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">PCR Run → Validated</span><span style="background:#F59E0B;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">1.8 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--bd);"><span style="font-size:12px;color:var(--t1);">Validated → DHIS2 Export</span><span style="background:#10B981;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">0.5 days</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;"><span style="font-size:12px;color:var(--t1);">End-to-End TAT</span><span style="background:#EF4444;color:white;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">19.4 days</span></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;">
+          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
+            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Turn Around Time</div>
+            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <path d="M60,58 L60,20 A38,38 0 1,1 26.4,70 Z" fill="#7C3AED"/>
+              <path d="M60,58 L26.4,70 A38,38 0 0,1 45.2,23.4 Z" fill="#1D4ED8"/>
+              <path d="M60,58 L45.2,23.4 A38,38 0 0,1 60,20 Z" fill="#F59E0B"/>
+              <circle cx="60" cy="58" r="20" fill="var(--sur)"/>
+              <circle cx="8" cy="82" r="4" fill="#7C3AED"/><text x="14" y="85" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Coll→Rcpt 57.8%</text>
+              <circle cx="8" cy="92" r="4" fill="#1D4ED8"/><text x="14" y="95" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">Rcpt→PCR 32.4%</text>
+              <circle cx="8" cy="102" r="4" fill="#F59E0B"/><text x="14" y="105" font-size="6.5" fill="var(--t2)" font-family="Inter,sans-serif">PCR→Valid 9.8%</text>
+            </svg>
+          </div>
+          <div style="background:var(--sur);border:1.5px solid var(--bd);border-radius:14px;padding:10px 8px;">
+            <div style="font-size:10px;font-weight:700;color:var(--t1);margin-bottom:6px;">Gender Distribution</div>
+            <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+              <path d="M60,54 L60,16 A38,38 0 1,1 28.4,72.5 Z" fill="#7C3AED"/>
+              <path d="M60,54 L28.4,72.5 A38,38 0 0,1 60,16 Z" fill="#374151"/>
+              <circle cx="60" cy="54" r="20" fill="var(--sur)"/>
+              <text x="60" y="51" font-size="11" font-weight="800" text-anchor="middle" fill="var(--t1)" font-family="Inter,sans-serif">72.3%</text>
+              <text x="60" y="62" font-size="7" text-anchor="middle" fill="var(--t2)" font-family="Inter,sans-serif">Female</text>
+              <circle cx="14" cy="90" r="5" fill="#7C3AED"/><text x="21" y="94" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Female: 72.3%</text>
+              <circle cx="14" cy="104" r="5" fill="#374151"/><text x="21" y="108" font-size="8" fill="var(--t2)" font-family="Inter,sans-serif">Male: 27.7%</text>
+            </svg>
+          </div>
+        </div>
+        <div style="font-size:11px;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;">Monthly PCR Tests</div>
+        <div class="chart-card" style="padding:0 0 14px;">
+          <div class="chart-hdr">
+            <div><div class="chart-title">PCR Tests per Month</div><div class="chart-subtitle">Jan–Sep 2026 · Reference Lab</div></div>
+            <div class="chart-actions">
+              <button class="chart-btn" onclick="shareReport()"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg> Share</button>
+              <button class="chart-btn purple" onclick="downloadReport('ref')"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Download</button>
+            </div>
+          </div>
+          <div class="chart-box"><div id="chart-ref-rep"></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="bnav">
+      <button class="bnav-i" onclick="go('ref')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>Home</button>
+      <button class="bnav-i" onclick="go('ref-sr')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M9 3v8l-3.5 6.5A2 2 0 007.3 21h9.4a2 2 0 001.8-3.5L15 11V3"/><line x1="9" y1="3" x2="15" y2="3"/></svg>Samples</button>
+      <button class="bnav-i on" style="color:#7C3AED;" onclick="go('ref-report')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="12" width="4" height="9"/><rect x="9.5" y="7" width="4" height="14"/><rect x="16" y="3" width="4" height="18"/></svg>Reports</button>
       <button class="bnav-i" onclick="go('login')"><svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Sign Out</button>
     </div>
   </div>
@@ -2581,6 +2722,16 @@ document.querySelectorAll('.chip-row').forEach(row => {
 
 function toggleSamp(btn) { btn.classList.toggle('on'); }
 
+function switchSrTab(lab, tab) {
+  const isRef = lab === 'ref';
+  const pfx = isRef ? 'rr' : 'sr';
+  const spfx = isRef ? 'ref' : 'dist';
+  document.getElementById(pfx+'-tab-s').classList.toggle('on', tab==='s');
+  document.getElementById(pfx+'-tab-r').classList.toggle('on', tab==='r');
+  document.getElementById('sr-'+spfx+'-s').style.display = tab==='s' ? '' : 'none';
+  document.getElementById('sr-'+spfx+'-r').style.display = tab==='r' ? '' : 'none';
+}
+
 function showToast(msg) {
   const t = document.getElementById('toast');
   if (!t) return;
@@ -2658,4 +2809,6 @@ const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
 renderBarChart('chart-chw', [8,11,9,14,12,15,18,16,12], MONTHS, '#1A6B42');
 renderBarChart('chart-dist', [85,92,88,104,98,112,118,126,134], MONTHS, '#1D4ED8');
 renderBarChart('chart-ref', [142,156,138,168,175,189,198,207,211], MONTHS, '#7C3AED');
+renderBarChart('chart-dist-rep', [85,92,88,104,98,112,118,126,134], MONTHS, '#1D4ED8');
+renderBarChart('chart-ref-rep', [142,156,138,168,175,189,198,207,211], MONTHS, '#7C3AED');
 </script>
